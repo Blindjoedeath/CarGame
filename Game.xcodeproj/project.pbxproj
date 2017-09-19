@@ -9,10 +9,11 @@
 /* Begin PBXBuildFile section */
 		3D3426971F71571E007E9907 /* ResourcePath.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3D3426961F71571E007E9907 /* ResourcePath.mm */; };
 		3D34269A1F71571E007E9907 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D3426991F71571E007E9907 /* main.cpp */; };
-		3D34269D1F71571E007E9907 /* cute_image.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3D34269C1F71571E007E9907 /* cute_image.jpg */; };
-		3D34269F1F71571E007E9907 /* nice_music.ogg in Resources */ = {isa = PBXBuildFile; fileRef = 3D34269E1F71571E007E9907 /* nice_music.ogg */; };
 		3D3426A11F71571E007E9907 /* sansation.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3D3426A01F71571E007E9907 /* sansation.ttf */; };
-		3D3426A31F71571E007E9907 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D3426A21F71571E007E9907 /* icon.png */; };
+		3D3426B51F7168BD007E9907 /* music.ogg in Resources */ = {isa = PBXBuildFile; fileRef = 3D3426B41F7168BD007E9907 /* music.ogg */; };
+		3D3426B81F716B92007E9907 /* SceneManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D3426B61F716B92007E9907 /* SceneManager.cpp */; };
+		3D3426BB1F716F27007E9907 /* GameObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D3426B91F716F27007E9907 /* GameObject.cpp */; };
+		3D3426BE1F717266007E9907 /* Car.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D3426BC1F717266007E9907 /* Car.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,10 +22,14 @@
 		3D3426961F71571E007E9907 /* ResourcePath.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = ResourcePath.mm; sourceTree = "<group>"; };
 		3D3426981F71571E007E9907 /* ResourcePath.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ResourcePath.hpp; sourceTree = "<group>"; };
 		3D3426991F71571E007E9907 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
-		3D34269C1F71571E007E9907 /* cute_image.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = cute_image.jpg; sourceTree = "<group>"; };
-		3D34269E1F71571E007E9907 /* nice_music.ogg */ = {isa = PBXFileReference; lastKnownFileType = file; path = nice_music.ogg; sourceTree = "<group>"; };
 		3D3426A01F71571E007E9907 /* sansation.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = sansation.ttf; sourceTree = "<group>"; };
-		3D3426A21F71571E007E9907 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
+		3D3426B41F7168BD007E9907 /* music.ogg */ = {isa = PBXFileReference; lastKnownFileType = file; path = music.ogg; sourceTree = "<group>"; };
+		3D3426B61F716B92007E9907 /* SceneManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SceneManager.cpp; path = Classes/SceneManager.cpp; sourceTree = "<group>"; };
+		3D3426B71F716B92007E9907 /* SceneManager.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = SceneManager.hpp; path = Classes/SceneManager.hpp; sourceTree = "<group>"; };
+		3D3426B91F716F27007E9907 /* GameObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GameObject.cpp; path = Classes/GameObject.cpp; sourceTree = "<group>"; };
+		3D3426BA1F716F27007E9907 /* GameObject.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = GameObject.hpp; path = Classes/GameObject.hpp; sourceTree = "<group>"; };
+		3D3426BC1F717266007E9907 /* Car.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Car.cpp; sourceTree = "<group>"; };
+		3D3426BD1F717266007E9907 /* Car.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Car.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +67,12 @@
 				3D3426991F71571E007E9907 /* main.cpp */,
 				3D34269B1F71571E007E9907 /* Resources */,
 				3D3426941F71571E007E9907 /* Supporting Files */,
+				3D3426B61F716B92007E9907 /* SceneManager.cpp */,
+				3D3426B71F716B92007E9907 /* SceneManager.hpp */,
+				3D3426B91F716F27007E9907 /* GameObject.cpp */,
+				3D3426BA1F716F27007E9907 /* GameObject.hpp */,
+				3D3426BC1F717266007E9907 /* Car.cpp */,
+				3D3426BD1F717266007E9907 /* Car.hpp */,
 			);
 			path = Game;
 			sourceTree = "<group>";
@@ -77,10 +88,8 @@
 		3D34269B1F71571E007E9907 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				3D34269C1F71571E007E9907 /* cute_image.jpg */,
-				3D34269E1F71571E007E9907 /* nice_music.ogg */,
+				3D3426B41F7168BD007E9907 /* music.ogg */,
 				3D3426A01F71571E007E9907 /* sansation.ttf */,
-				3D3426A21F71571E007E9907 /* icon.png */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -144,10 +153,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3D3426A31F71571E007E9907 /* icon.png in Resources */,
 				3D3426A11F71571E007E9907 /* sansation.ttf in Resources */,
-				3D34269F1F71571E007E9907 /* nice_music.ogg in Resources */,
-				3D34269D1F71571E007E9907 /* cute_image.jpg in Resources */,
+				3D3426B51F7168BD007E9907 /* music.ogg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -174,8 +181,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3D3426BB1F716F27007E9907 /* GameObject.cpp in Sources */,
 				3D34269A1F71571E007E9907 /* main.cpp in Sources */,
 				3D3426971F71571E007E9907 /* ResourcePath.mm in Sources */,
+				3D3426B81F716B92007E9907 /* SceneManager.cpp in Sources */,
+				3D3426BE1F717266007E9907 /* Car.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
