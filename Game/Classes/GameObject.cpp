@@ -8,46 +8,47 @@
 
 #include "GameObject.hpp"
 #include "ResourcePath.hpp"
-
 std::vector<GameObject*> GameObject::all_objects;
 int GameObject::all_objects_count = 0;
 
 GameObject::GameObject (const char * fileName, sf::IntRect transform, sf::Vector2f position, int layer_num){
     layer = layer_num;
-    sf::Texture texture;
-    texture.loadFromFile(resourcePath() + fileName);
-    sprite.setTexture(texture);
-    sprite.setScale((float)transform.width / (float)texture.getSize().x,
-                    (float)transform.height / (float)texture.getSize().y );
+    texture = new sf::Texture();
+    sprite = new sf::Sprite();
+    (*texture).loadFromFile(resourcePath() + fileName);
+    (*sprite).setTexture(*texture);
+    (*sprite).setScale((float)transform.width / (float)(*texture).getSize().x,
+                    (float)transform.height / (float)(*texture).getSize().y );
     child_count = 0;
     ++all_objects_count;
     all_objects.push_back(this);
 }
 
 GameObject::~GameObject(){
-    sprite.~Sprite();
+    (*sprite).~Sprite();
+    (*texture).~Texture();
 }
 
 int GameObject::get_layer(){
     return layer;
 }
 
-sf::Sprite GameObject::get_sprite(){
+sf::Sprite * GameObject::get_sprite(){
     return sprite;
 }
 
 sf::Vector2f GameObject::get_position(){
-    return sprite.getPosition();
+    return (*sprite).getPosition();
 }
 
 sf::IntRect GameObject::get_size(){
-    return sprite.getTextureRect();
+    return (*sprite).getTextureRect();
 }
 
 void GameObject::set_position(sf::Vector2f pos){
     sf::Vector2f buffer;
-    buffer = pos - sprite.getPosition();
-    sprite.setPosition(pos.x, pos.y);
+    buffer = pos - (*sprite).getPosition();
+    (*sprite).setPosition(pos.x, pos.y);
     for (int i = 0; i < child_count; ++i){
         children[i]->set_position(children[i]->get_position() + buffer);
     }

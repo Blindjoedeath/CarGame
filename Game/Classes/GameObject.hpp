@@ -16,7 +16,8 @@ class GameObject{
     
     protected :
     int layer;
-    sf::Sprite sprite;
+    sf::Sprite * sprite;
+    sf::Texture* texture;
     std::vector<GameObject*> children;
     
     public :
@@ -26,7 +27,7 @@ class GameObject{
     GameObject(const char *, sf::IntRect, sf::Vector2f, int);
     ~GameObject();
     int get_layer();
-    sf::Sprite get_sprite();
+    sf::Sprite * get_sprite();
     sf::Vector2f get_position();
     sf::IntRect get_size();
     void set_position(sf::Vector2f);

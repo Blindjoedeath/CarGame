@@ -23,8 +23,6 @@ static class SceneManager{
     static int car_width;
     static int car_height;
     static int players_count;
-    static std::vector<MovableObject*> cars;
-    static std::vector<Road*> roads;
     
     public :
     static int road_width;
@@ -33,6 +31,8 @@ static class SceneManager{
     static sf::RenderWindow * window;
     static sf::Music * music;
     static void create_window();
+    static std::vector<MovableObject*> cars;
+    static std::vector<Road*> roads;
 };
 
 #endif /* SceneManager_hpp */

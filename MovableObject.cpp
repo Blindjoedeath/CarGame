@@ -28,25 +28,25 @@ void MovableObject::move(direction dir)
         case direction::FRONT:{
             if (y_curr_obj_speed + y_incr_step <= y_limit_speed)
                 y_curr_obj_speed += y_incr_step;
-            sprite.setPosition(get_position().x + y_curr_obj_speed, get_position().y);
+            (*sprite).setPosition(get_position().x + y_curr_obj_speed, get_position().y);
         }
             break;
         case direction::BACK:{
             if (abs(y_curr_obj_speed - y_incr_step) <= y_limit_speed)
                 y_curr_obj_speed -= y_incr_step;
-            sprite.setPosition(get_position().x + y_curr_obj_speed, get_position().y);
+            (*sprite).setPosition(get_position().x + y_curr_obj_speed, get_position().y);
         }
             break;
         case direction::LEFT:{
             if (abs(x_curr_obj_speed - x_incr_step) <= x_limit_speed)
                 x_curr_obj_speed -= x_incr_step;
-            sprite.setPosition(get_position().x + x_curr_obj_speed, get_position().y);
+            (*sprite).setPosition(get_position().x + x_curr_obj_speed, get_position().y);
         }
             break;
         case direction::RIGHT:{
             if (x_curr_obj_speed + x_incr_step <= x_limit_speed)
                 x_curr_obj_speed += x_incr_step;
-            sprite.setPosition(get_position().x + x_curr_obj_speed, get_position().y);
+            (*sprite).setPosition(get_position().x + x_curr_obj_speed, get_position().y);
         }
             break;
     }

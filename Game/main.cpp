@@ -37,14 +37,11 @@ int main (int argc, char** argv){
                 (*SceneManager::window).close();
             }
         }
-        
         (*SceneManager::window).clear();
         for (int j = 1; j <= SceneManager::layers_count; ++j)
             for (int i = 0; i < GameObject::all_objects_count; ++i)
                 if (GameObject::all_objects[i] -> get_layer() == j)
-                    (*SceneManager::window).draw(GameObject::all_objects[i]->get_sprite());
-  
-        
+                    (*SceneManager::window).draw(*GameObject::all_objects[i]->get_sprite());
         (*SceneManager::window).display();
     }
     (*SceneManager::music).~Music();

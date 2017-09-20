@@ -7,16 +7,17 @@
 //
 
 #include "SceneManager.hpp"
+#include <iostream>
 
-int SceneManager :: scr_height = 600;
-int SceneManager :: scr_width = 1000;
-int SceneManager :: car_width = 60;
-int SceneManager :: car_height = 100;
-int SceneManager :: layers_count = 2;
+int SceneManager::scr_height = 600;
+int SceneManager::scr_width = 1000;
+int SceneManager::car_width = 60;
+int SceneManager::car_height = 100;
+int SceneManager::layers_count = 2;
+int SceneManager::players_count = 2;
 
 std::vector<Road*> SceneManager::roads;
 std::vector<MovableObject*> SceneManager::cars;
-int SceneManager::players_count = 2;
 sf::RenderWindow* SceneManager::window;
 sf::Music* SceneManager::music;
 
@@ -27,9 +28,10 @@ void SceneManager :: create_window(){
     if (!(*music).openFromFile(resourcePath() + "music.ogg")){
         return EXIT_FAILURE;
     }
+    (*music).play();
     sf::IntRect rect;
     for (int i = 0; i < players_count; ++i){
-        sf::Vector2f pos(scr_width/players_count * i, -(scr_height * 3)/2);
+        sf::Vector2f pos((scr_width/players_count) * i, -(scr_height * 3)/2);
         sf::IntRect size;
         size.width = scr_width/players_count;
         size.height = scr_height * 3;
