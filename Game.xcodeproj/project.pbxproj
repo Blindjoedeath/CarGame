@@ -13,7 +13,11 @@
 		3D3426B51F7168BD007E9907 /* music.ogg in Resources */ = {isa = PBXBuildFile; fileRef = 3D3426B41F7168BD007E9907 /* music.ogg */; };
 		3D3426B81F716B92007E9907 /* SceneManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D3426B61F716B92007E9907 /* SceneManager.cpp */; };
 		3D3426BB1F716F27007E9907 /* GameObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D3426B91F716F27007E9907 /* GameObject.cpp */; };
-		3D3426BE1F717266007E9907 /* Car.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D3426BC1F717266007E9907 /* Car.cpp */; };
+		3D817B521F72B842006A5C0A /* MovableObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D817B511F72B842006A5C0A /* MovableObject.cpp */; };
+		3DA00CC01F72915100F9B62E /* Road.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DA00CBE1F72915100F9B62E /* Road.cpp */; };
+		3DA00CC41F72B69A00F9B62E /* Car.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DA00CC31F72B69A00F9B62E /* Car.png */; };
+		3DECAD5A1F72C6480041CBF6 /* road.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3DECAD591F72C6480041CBF6 /* road.jpg */; };
+		3DECAD5C1F72C6C40041CBF6 /* obstruction.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3DECAD5B1F72C6C40041CBF6 /* obstruction.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,8 +32,13 @@
 		3D3426B71F716B92007E9907 /* SceneManager.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = SceneManager.hpp; path = Classes/SceneManager.hpp; sourceTree = "<group>"; };
 		3D3426B91F716F27007E9907 /* GameObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GameObject.cpp; path = Classes/GameObject.cpp; sourceTree = "<group>"; };
 		3D3426BA1F716F27007E9907 /* GameObject.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = GameObject.hpp; path = Classes/GameObject.hpp; sourceTree = "<group>"; };
-		3D3426BC1F717266007E9907 /* Car.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Car.cpp; sourceTree = "<group>"; };
-		3D3426BD1F717266007E9907 /* Car.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Car.hpp; sourceTree = "<group>"; };
+		3D817B501F72B7EF006A5C0A /* MovableObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MovableObject.h; sourceTree = "<group>"; };
+		3D817B511F72B842006A5C0A /* MovableObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MovableObject.cpp; path = ../MovableObject.cpp; sourceTree = "<group>"; };
+		3DA00CBE1F72915100F9B62E /* Road.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Road.cpp; path = Classes/Road.cpp; sourceTree = "<group>"; };
+		3DA00CBF1F72915100F9B62E /* Road.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = Road.hpp; path = Classes/Road.hpp; sourceTree = "<group>"; };
+		3DA00CC31F72B69A00F9B62E /* Car.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Car.png; sourceTree = "<group>"; };
+		3DECAD591F72C6480041CBF6 /* road.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = road.jpg; sourceTree = "<group>"; };
+		3DECAD5B1F72C6C40041CBF6 /* obstruction.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = obstruction.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,17 +71,19 @@
 		3D3426931F71571E007E9907 /* Game */ = {
 			isa = PBXGroup;
 			children = (
-				3D3426961F71571E007E9907 /* ResourcePath.mm */,
-				3D3426981F71571E007E9907 /* ResourcePath.hpp */,
 				3D3426991F71571E007E9907 /* main.cpp */,
 				3D34269B1F71571E007E9907 /* Resources */,
-				3D3426941F71571E007E9907 /* Supporting Files */,
+				3D3426961F71571E007E9907 /* ResourcePath.mm */,
+				3D3426981F71571E007E9907 /* ResourcePath.hpp */,
+				3D817B511F72B842006A5C0A /* MovableObject.cpp */,
+				3D817B501F72B7EF006A5C0A /* MovableObject.h */,
+				3DA00CBE1F72915100F9B62E /* Road.cpp */,
+				3DA00CBF1F72915100F9B62E /* Road.hpp */,
 				3D3426B61F716B92007E9907 /* SceneManager.cpp */,
 				3D3426B71F716B92007E9907 /* SceneManager.hpp */,
 				3D3426B91F716F27007E9907 /* GameObject.cpp */,
 				3D3426BA1F716F27007E9907 /* GameObject.hpp */,
-				3D3426BC1F717266007E9907 /* Car.cpp */,
-				3D3426BD1F717266007E9907 /* Car.hpp */,
+				3D3426941F71571E007E9907 /* Supporting Files */,
 			);
 			path = Game;
 			sourceTree = "<group>";
@@ -88,6 +99,9 @@
 		3D34269B1F71571E007E9907 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				3DECAD5B1F72C6C40041CBF6 /* obstruction.jpg */,
+				3DECAD591F72C6480041CBF6 /* road.jpg */,
+				3DA00CC31F72B69A00F9B62E /* Car.png */,
 				3D3426B41F7168BD007E9907 /* music.ogg */,
 				3D3426A01F71571E007E9907 /* sansation.ttf */,
 			);
@@ -153,7 +167,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3DA00CC41F72B69A00F9B62E /* Car.png in Resources */,
+				3DECAD5A1F72C6480041CBF6 /* road.jpg in Resources */,
 				3D3426A11F71571E007E9907 /* sansation.ttf in Resources */,
+				3DECAD5C1F72C6C40041CBF6 /* obstruction.jpg in Resources */,
 				3D3426B51F7168BD007E9907 /* music.ogg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -184,8 +201,9 @@
 				3D3426BB1F716F27007E9907 /* GameObject.cpp in Sources */,
 				3D34269A1F71571E007E9907 /* main.cpp in Sources */,
 				3D3426971F71571E007E9907 /* ResourcePath.mm in Sources */,
+				3D817B521F72B842006A5C0A /* MovableObject.cpp in Sources */,
+				3DA00CC01F72915100F9B62E /* Road.cpp in Sources */,
 				3D3426B81F716B92007E9907 /* SceneManager.cpp in Sources */,
-				3D3426BE1F717266007E9907 /* Car.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -319,6 +337,7 @@
 				3D3426A81F71571E007E9907 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

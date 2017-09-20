@@ -13,18 +13,25 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
 #include "ResourcePath.hpp"
+#include "MovableObject.hpp"
+#include "Road.hpp"
 
 static class SceneManager{
     private:
-    
     static int scr_width;
     static int scr_height;
-    public :
+    static int car_width;
+    static int car_height;
+    static int players_count;
+    static std::vector<MovableObject*> cars;
+    static std::vector<Road*> roads;
     
+    public :
     static int road_width;
     static int road_height;
-    static sf::RenderWindow window;
-    static sf::Music music;
+    static int layers_count;
+    static sf::RenderWindow * window;
+    static sf::Music * music;
     static void create_window();
 };
 

@@ -14,18 +14,24 @@
 
 class GameObject{
     
-    private :
+    protected :
     int layer;
     sf::Sprite sprite;
-    sf::Vector2f position;
-    sf::IntRect size;
+    std::vector<GameObject*> children;
     
     public :
-    GameObject(const char, sf::IntRect, int);
+    static int all_objects_count;
+    static std::vector<GameObject*> all_objects;
+    static float distanse(GameObject *, GameObject *);
+    GameObject(const char *, sf::IntRect, sf::Vector2f, int);
+    ~GameObject();
     int get_layer();
     sf::Sprite get_sprite();
     sf::Vector2f get_position();
     sf::IntRect get_size();
     void set_position(sf::Vector2f);
+    int child_count;
+    GameObject* get_child(int pos);
+    void add_child(GameObject* obj);
 };
 #endif /* GameObject_hpp */
