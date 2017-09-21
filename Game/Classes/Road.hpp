@@ -19,8 +19,8 @@ class Road : public MovableObject{
     std :: vector<GameObject*> obstruction;
     float get_dist_from_surf(sf::Vector2f, sf::Vector2f, sf::IntRect, sf::IntRect);
     void gen_obstr();
-    static int lim_obstr_width;
-    static int lim_obstr_height;
+    static sf::Vector2i max_obstr_size;
+    static sf::Vector2i min_obstr_size;
     static float lim_obstr_filled_part;
     static int wall_indent;
     

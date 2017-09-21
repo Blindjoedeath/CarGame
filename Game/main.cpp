@@ -20,6 +20,7 @@
 #include <iostream>
 
 
+
 int main (int argc, char** argv){
     
     SceneManager::create_window();
@@ -36,12 +37,21 @@ int main (int argc, char** argv){
                 (*SceneManager::music).stop();
                 (*SceneManager::window).close();
             }
+            if (event.type == sf::Event::KeyPressed || event.type == sf::Event::KeyReleased)
+            {
+                SceneManager::set_key_state(event.key.code, event.type);
+            }
         }
+        SceneManager::execute_actions();
         (*SceneManager::window).clear();
         for (int j = 1; j <= SceneManager::layers_count; ++j)
             for (int i = 0; i < GameObject::all_objects_count; ++i)
                 if (GameObject::all_objects[i] -> get_layer() == j)
                     (*SceneManager::window).draw(*GameObject::all_objects[i]->get_sprite());
+        for (int i = 0; i < 2; ++i)
+        {
+            SceneManager::cars[i] -> move();
+        }
         (*SceneManager::window).display();
     }
     (*SceneManager::music).~Music();

@@ -15,17 +15,25 @@
 class MovableObject : public GameObject{
     
     private :
+    static float x_limit_accel;
+    static float y_limit_accel;
+    static float x_accel_step;
+    static float y_accel_step;
     static float x_limit_speed;
     static float y_limit_speed;
-    static float x_incr_step;
-    static float y_incr_step;
-    float x_curr_obj_speed;
-    float y_curr_obj_speed;
+    static float x_friction;
+    static float y_friction;
+    static float y_min_for_x;
+    float x_curr_accel;
+    float y_curr_accel;
+    float x_curr_speed;
+    float y_curr_speed;
     
     public :
     static enum direction{FRONT, BACK, RIGHT, LEFT};
     MovableObject(const char *, sf::IntRect, sf::Vector2f, int);
-    void move(direction);
+    void move();
+    void add_acceleration(direction);
     void on_collision(direction);
 };
 

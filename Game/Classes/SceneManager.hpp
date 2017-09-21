@@ -23,6 +23,11 @@ static class SceneManager{
     static int car_width;
     static int car_height;
     static int players_count;
+    static int y_right_car_pos;
+    static std::map<sf::Keyboard::Key, std::function<void()>> key_actions;
+    static std::map<sf::Keyboard::Key, bool> is_key_pressed;
+    static void set_actions();
+    bool is_car_pos_right(MovableObject * car, Road * road);
     
     public :
     static int road_width;
@@ -31,6 +36,8 @@ static class SceneManager{
     static sf::RenderWindow * window;
     static sf::Music * music;
     static void create_window();
+    static void set_key_state(sf::Keyboard::Key, sf::Event::EventType);
+    static void execute_actions();
     static std::vector<MovableObject*> cars;
     static std::vector<Road*> roads;
 };

@@ -17,6 +17,7 @@ class GameObject{
     protected :
     int layer;
     sf::Sprite * sprite;
+    sf::IntRect size;
     sf::Texture* texture;
     std::vector<GameObject*> children;
     

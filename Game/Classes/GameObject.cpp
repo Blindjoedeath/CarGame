@@ -8,10 +8,13 @@
 
 #include "GameObject.hpp"
 #include "ResourcePath.hpp"
+#include <iostream>
+
 std::vector<GameObject*> GameObject::all_objects;
 int GameObject::all_objects_count = 0;
 
 GameObject::GameObject (const char * fileName, sf::IntRect transform, sf::Vector2f position, int layer_num){
+    std::cout << fileName << " " << transform.width << "x" << transform.height << std::endl;
     layer = layer_num;
     texture = new sf::Texture();
     sprite = new sf::Sprite();
@@ -19,6 +22,8 @@ GameObject::GameObject (const char * fileName, sf::IntRect transform, sf::Vector
     (*sprite).setTexture(*texture);
     (*sprite).setScale((float)transform.width / (float)(*texture).getSize().x,
                     (float)transform.height / (float)(*texture).getSize().y );
+    (*sprite).setPosition(position);
+    size = transform;
     child_count = 0;
     ++all_objects_count;
     all_objects.push_back(this);
@@ -42,13 +47,13 @@ sf::Vector2f GameObject::get_position(){
 }
 
 sf::IntRect GameObject::get_size(){
-    return (*sprite).getTextureRect();
+    return size;
 }
 
 void GameObject::set_position(sf::Vector2f pos){
     sf::Vector2f buffer;
     buffer = pos - (*sprite).getPosition();
-    (*sprite).setPosition(pos.x, pos.y);
+    (*sprite).setPosition(pos);
     for (int i = 0; i < child_count; ++i){
         children[i]->set_position(children[i]->get_position() + buffer);
     }
