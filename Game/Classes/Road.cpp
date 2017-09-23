@@ -59,7 +59,7 @@ void Road::gen_obstr(){
 Road::Road(const char * fileName, sf::IntRect size, sf::Vector2f pos, int layout)
 : MovableObject(fileName, size, pos, layout){
     obstr_count = 0;
-    gen_obstr();
+//    gen_obstr();
     for (int i = 0; i < obstr_count; ++i){
         add_child(obstruction[i]);
     }

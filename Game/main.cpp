@@ -37,7 +37,7 @@ int main (int argc, char** argv){
                 (*SceneManager::music).stop();
                 (*SceneManager::window).close();
             }
-            if (event.type == sf::Event::KeyPressed || event.type == sf::Event::KeyReleased)
+            if (event.type == sf::Event::KeyPressed | event.type == sf::Event::KeyReleased)
             {
                 SceneManager::set_key_state(event.key.code, event.type);
             }
@@ -51,6 +51,7 @@ int main (int argc, char** argv){
         for (int i = 0; i < 2; ++i)
         {
             SceneManager::cars[i] -> move();
+            SceneManager::roads[i] -> move();
         }
         (*SceneManager::window).display();
     }
