@@ -49,9 +49,12 @@ bool SceneManager::is_car_pos_right(MovableObject *car, Road *road){
 }
 
 void SceneManager::movement(MovableObject * car, Road * road, MovableObject::direction dir){
+    car->set_x_block(!(road->get_y_speed() > 0.001 || road->get_y_speed() < -0.001));
     if (is_car_pos_right(car, road) && dir != MovableObject::direction::LEFT && dir != MovableObject::direction::RIGHT)
         road->add_acceleration(turn_direction(dir));
-    else car->add_acceleration(dir);
+    else {
+        car->add_acceleration(dir);
+    }
 }
 
 void SceneManager::execute_actions(){
@@ -81,6 +84,7 @@ void SceneManager::set_actions(){
     for (action_map::iterator it = key_actions.begin(); it!=key_actions.end(); ++it){
         is_key_pressed[it->first] = false;
     }
+
 }
 void SceneManager :: create_window(){
     window = new sf::RenderWindow();

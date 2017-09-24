@@ -21,6 +21,18 @@ float MovableObject::x_friction = 0.00025;
 float MovableObject::y_friction = 0.00045;
 float MovableObject::y_min_for_x = 0.3;
 
+void MovableObject::set_x_block(bool b){
+    x_move_blocked = b;
+}
+
+float MovableObject::get_x_speed(){
+    return x_curr_speed;
+}
+
+float MovableObject::get_y_speed(){
+    return y_curr_speed;
+}
+
 MovableObject::MovableObject (const char * fileName, sf::IntRect size, sf::Vector2f pos, int layout)
 : GameObject(fileName, size, pos, layout){
     x_curr_speed = y_curr_speed = 0;
@@ -76,8 +88,8 @@ void MovableObject::move(){
             y_curr_speed = -y_limit_speed;
     }
     
-    if ((y_curr_speed > 0 && y_curr_speed < y_min_for_x)||
-        (y_curr_speed < 0 && y_curr_speed > -y_min_for_x)|| y_curr_speed == 0){
+    if (((y_curr_speed > 0 && y_curr_speed < y_min_for_x)||
+        (y_curr_speed < 0 && y_curr_speed > -y_min_for_x)|| y_curr_speed == 0) && x_move_blocked){
         x_curr_speed = x_curr_accel = 0;
     }
     (*sprite).setPosition(get_position().x + x_curr_speed, get_position().y - y_curr_speed);
