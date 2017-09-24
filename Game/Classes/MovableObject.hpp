@@ -37,7 +37,6 @@ class MovableObject : public GameObject{
     MovableObject(const char *, sf::IntRect, sf::Vector2f, int);
     void move();
     void add_acceleration(direction);
-    void on_collision(direction);
     void set_x_block(bool);
     void set_x_speed(float);
     void set_y_speed(float);

@@ -15,6 +15,8 @@
 		3D3426BB1F716F27007E9907 /* GameObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D3426B91F716F27007E9907 /* GameObject.cpp */; };
 		3DA00CC01F72915100F9B62E /* Road.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DA00CBE1F72915100F9B62E /* Road.cpp */; };
 		3DA00CC41F72B69A00F9B62E /* Car.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DA00CC31F72B69A00F9B62E /* Car.png */; };
+		3DAAF31D1F785C7B00AF0AEE /* Collider.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DAAF31B1F785C7B00AF0AEE /* Collider.cpp */; };
+		3DAAF3201F786ABB00AF0AEE /* Object.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DAAF31E1F786ABB00AF0AEE /* Object.cpp */; };
 		3DDBF3AD1F72F9BD00526289 /* MovableObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DDBF3AB1F72F9BD00526289 /* MovableObject.cpp */; };
 		3DECAD5A1F72C6480041CBF6 /* road.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3DECAD591F72C6480041CBF6 /* road.jpg */; };
 		3DECAD5C1F72C6C40041CBF6 /* obstruction.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3DECAD5B1F72C6C40041CBF6 /* obstruction.jpg */; };
@@ -35,6 +37,10 @@
 		3DA00CBE1F72915100F9B62E /* Road.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Road.cpp; path = Classes/Road.cpp; sourceTree = "<group>"; };
 		3DA00CBF1F72915100F9B62E /* Road.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = Road.hpp; path = Classes/Road.hpp; sourceTree = "<group>"; };
 		3DA00CC31F72B69A00F9B62E /* Car.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Car.png; sourceTree = "<group>"; };
+		3DAAF31B1F785C7B00AF0AEE /* Collider.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Collider.cpp; path = Classes/Collider.cpp; sourceTree = "<group>"; };
+		3DAAF31C1F785C7B00AF0AEE /* Collider.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = Collider.hpp; path = Classes/Collider.hpp; sourceTree = "<group>"; };
+		3DAAF31E1F786ABB00AF0AEE /* Object.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Object.cpp; path = Classes/Object.cpp; sourceTree = "<group>"; };
+		3DAAF31F1F786ABB00AF0AEE /* Object.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = Object.hpp; path = Classes/Object.hpp; sourceTree = "<group>"; };
 		3DDBF3AB1F72F9BD00526289 /* MovableObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MovableObject.cpp; path = Classes/MovableObject.cpp; sourceTree = "<group>"; };
 		3DDBF3AC1F72F9BD00526289 /* MovableObject.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = MovableObject.hpp; path = Classes/MovableObject.hpp; sourceTree = "<group>"; };
 		3DECAD591F72C6480041CBF6 /* road.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = road.jpg; sourceTree = "<group>"; };
@@ -75,6 +81,10 @@
 				3D34269B1F71571E007E9907 /* Resources */,
 				3D3426961F71571E007E9907 /* ResourcePath.mm */,
 				3D3426981F71571E007E9907 /* ResourcePath.hpp */,
+				3DAAF31E1F786ABB00AF0AEE /* Object.cpp */,
+				3DAAF31F1F786ABB00AF0AEE /* Object.hpp */,
+				3DAAF31C1F785C7B00AF0AEE /* Collider.hpp */,
+				3DAAF31B1F785C7B00AF0AEE /* Collider.cpp */,
 				3DDBF3AB1F72F9BD00526289 /* MovableObject.cpp */,
 				3DDBF3AC1F72F9BD00526289 /* MovableObject.hpp */,
 				3DA00CBE1F72915100F9B62E /* Road.cpp */,
@@ -199,6 +209,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				3D3426BB1F716F27007E9907 /* GameObject.cpp in Sources */,
+				3DAAF31D1F785C7B00AF0AEE /* Collider.cpp in Sources */,
+				3DAAF3201F786ABB00AF0AEE /* Object.cpp in Sources */,
 				3D34269A1F71571E007E9907 /* main.cpp in Sources */,
 				3D3426971F71571E007E9907 /* ResourcePath.mm in Sources */,
 				3DDBF3AD1F72F9BD00526289 /* MovableObject.cpp in Sources */,

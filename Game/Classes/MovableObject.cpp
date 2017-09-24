@@ -140,21 +140,3 @@ void MovableObject::add_acceleration(direction dir)
             break;
     }
 }
-
-void MovableObject::on_collision(direction dir)
-{
-    switch (dir) {
-        case direction::FRONT:{
-        }
-            break;
-        case direction::BACK:{
-        }
-            break;
-        case direction::LEFT:{
-        }
-            break;
-        case direction::RIGHT:{
-        }
-            break;
-    }
-}

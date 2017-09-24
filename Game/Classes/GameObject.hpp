@@ -11,6 +11,7 @@
 
 #include <stdio.h>
 #include <SFML/Graphics.hpp>
+#include <Collider.hpp>
 
 class GameObject{
     
@@ -33,7 +34,7 @@ class GameObject{
     sf::IntRect get_size();
     void set_position(sf::Vector2f);
     int child_count;
-    GameObject* get_child(int pos);
-    void add_child(GameObject* obj);
+    GameObject* get_child(int);
+    void add_child(GameObject*);
 };
 #endif /* GameObject_hpp */

@@ -112,6 +112,7 @@ void SceneManager :: create_window(){
         car_size.width = car_width;
         car_size.height = car_height;
         cars.push_back(new MovableObject("car.png", car_size, car_pos, 2));
+        cars[i]->add_child();
     }
     set_actions();
 }
