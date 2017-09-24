@@ -9,39 +9,45 @@
 #include "Road.hpp"
 #include <cmath>
 #include <iostream>
+#include <SceneManager.hpp>
+#include <time.h>
 
 sf::Vector2i Road::max_obstr_size(100, 100);
 sf::Vector2i Road::min_obstr_size(50, 50);
-float Road::lim_obstr_filled_part = 0.2;
+float Road::lim_obstr_filled_part = 0.05;
 int Road::wall_indent = 150;
+int Road::min_obstr_dist = 10;
 
 
-float Road::get_dist_from_surf(sf::Vector2f first_pos, sf::Vector2f second_pos,
+int Road::get_dist_from_surf(sf::Vector2f first_pos, sf::Vector2f second_pos,
                                sf::IntRect first_trans, sf::IntRect second_trans){
-    return (sqrt(pow(first_pos.x - second_pos.x, 2) +
-                 pow(first_pos.y - second_pos.y, 2)) -
-                    (first_trans.width/2 + second_trans.width/2));
+    return (sqrt(pow(first_pos.x + first_trans.width/2 - second_pos.x + second_trans.width/2, 2) +
+                 pow(first_pos.y + first_trans.height/2 - second_pos.y + second_trans.height/2, 2)) -
+                (first_trans.width/2 + second_trans.width/2)) ;
 }
 
 void Road::gen_obstr(){
-    float area = (get_size().width - 2*wall_indent) * get_size().height * lim_obstr_filled_part;
-    std::cout << get_size().width << " * " << get_size().height << std::endl;
+    float area = ((float)get_size().width - 2*wall_indent) * (float)get_size().height * lim_obstr_filled_part;
+    srand(time(0) + get_position().x);
     while (area > 0)
     {
         sf::Vector2f pos;
         pos.x = get_position().x + wall_indent +
-                random() % (get_size().width - wall_indent*2);
-        pos.y = random() % get_size().width;
+            rand() % (get_size().width - wall_indent*2);
+        pos.y = -rand() % get_size().height + SceneManager::scr_height;
         
         sf::IntRect size;
-        size.width = min_obstr_size.x + random() % (max_obstr_size.x - min_obstr_size.x);
-        size.height = min_obstr_size.y + random() % (max_obstr_size.y - min_obstr_size.y);
-        bool isCorrect = true;
+        size.width = min_obstr_size.x + rand() % (max_obstr_size.x - min_obstr_size.x);
+        size.height = size.width;
+        bool isCorrect = false;
         if (pos.x > get_position().x + wall_indent &&
                 pos.x < get_position().x + get_size().width - wall_indent){
-            for (int i = 0; i < obstr_count; ++i)
+            isCorrect = true;
+            for (int i = 0; i < obstruction.size(); ++i)
             {
-                if (get_dist_from_surf(pos, obstruction[i]->get_position(), size, obstruction[i]->get_size()) < 0){
+                int dist = get_dist_from_surf(pos, obstruction[i]->get_position(), size, obstruction[i]->get_size());
+                std::cout << dist << std::endl;
+                if (dist < min_obstr_dist){
                     isCorrect = false;
                     break;
                 }
@@ -58,9 +64,8 @@ void Road::gen_obstr(){
 
 Road::Road(const char * fileName, sf::IntRect size, sf::Vector2f pos, int layout)
 : MovableObject(fileName, size, pos, layout){
-    obstr_count = 0;
-//    gen_obstr();
-    for (int i = 0; i < obstr_count; ++i){
-        add_child(obstruction[i]);
+    gen_obstr();
+    for (auto it = obstruction.begin(); it != obstruction.end(); ++it){
+        add_child(*it);
     }
 }

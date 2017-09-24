@@ -14,7 +14,6 @@ std::vector<GameObject*> GameObject::all_objects;
 int GameObject::all_objects_count = 0;
 
 GameObject::GameObject (const char * fileName, sf::IntRect transform, sf::Vector2f position, int layer_num){
-    std::cout << fileName << " " << transform.width << "x" << transform.height << std::endl;
     layer = layer_num;
     texture = new sf::Texture();
     sprite = new sf::Sprite();

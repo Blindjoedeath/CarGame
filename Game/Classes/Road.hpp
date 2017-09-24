@@ -15,14 +15,14 @@
 class Road : public MovableObject{
     
     private :
-    int obstr_count;
     std :: vector<GameObject*> obstruction;
-    float get_dist_from_surf(sf::Vector2f, sf::Vector2f, sf::IntRect, sf::IntRect);
+    int get_dist_from_surf(sf::Vector2f, sf::Vector2f, sf::IntRect, sf::IntRect);
     void gen_obstr();
     static sf::Vector2i max_obstr_size;
     static sf::Vector2i min_obstr_size;
     static float lim_obstr_filled_part;
     static int wall_indent;
+    static int min_obstr_dist;
     
     public :
     Road(const char *, sf::IntRect, sf::Vector2f, int);

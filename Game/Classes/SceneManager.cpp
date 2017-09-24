@@ -50,11 +50,17 @@ bool SceneManager::is_car_pos_right(MovableObject *car, Road *road){
 
 void SceneManager::movement(MovableObject * car, Road * road, MovableObject::direction dir){
     car->set_x_block(!(road->get_y_speed() > 0.001 || road->get_y_speed() < -0.001));
-    if (is_car_pos_right(car, road) && dir != MovableObject::direction::LEFT && dir != MovableObject::direction::RIGHT)
+    if (is_car_pos_right(car, road) && dir != MovableObject::direction::LEFT && dir != MovableObject::direction::RIGHT){
+        if (car->get_y_speed() != 0){
+            road->set_y_speed(-car->get_y_speed());
+            road->set_y_accel(-car->get_y_accel());
+            car->set_y_speed(0);
+            car->set_y_accel(0);
+        }
         road->add_acceleration(turn_direction(dir));
-    else {
-        car->add_acceleration(dir);
     }
+    else
+        car->add_acceleration(dir);
 }
 
 void SceneManager::execute_actions(){
@@ -93,7 +99,7 @@ void SceneManager :: create_window(){
     if (!(*music).openFromFile(resourcePath() + "music.ogg")){
         return EXIT_FAILURE;
     }
-    (*music).play();
+//    (*music).play();
     sf::IntRect rect;
     for (int i = 0; i < players_count; ++i){
         sf::IntRect size;

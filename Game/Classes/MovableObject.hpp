@@ -29,6 +29,8 @@ class MovableObject : public GameObject{
     float x_curr_speed;
     float y_curr_speed;
     bool x_move_blocked;
+    int upp_bound;
+    int low_bound;
     
     public :
     static enum direction{FRONT, BACK, RIGHT, LEFT};
@@ -37,8 +39,14 @@ class MovableObject : public GameObject{
     void add_acceleration(direction);
     void on_collision(direction);
     void set_x_block(bool);
-    float get_y_speed();
+    void set_x_speed(float);
+    void set_y_speed(float);
+    void set_x_accel(float);
+    void set_y_accel(float);
     float get_x_speed();
+    float get_y_speed();
+    float get_x_accel();
+    float get_y_accel();
 };
 
 #endif /* MovableObject_hpp */

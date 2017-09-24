@@ -18,8 +18,6 @@
 
 static class SceneManager{
     private:
-    static int scr_width;
-    static int scr_height;
     static int car_width;
     static int car_height;
     static int players_count;
@@ -32,6 +30,8 @@ static class SceneManager{
     static void movement(MovableObject*, Road*, MovableObject::direction);
     
     public :
+    static int scr_width;
+    static int scr_height;
     static int road_width;
     static int road_height;
     static int layers_count;

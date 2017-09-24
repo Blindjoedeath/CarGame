@@ -33,6 +33,27 @@ float MovableObject::get_y_speed(){
     return y_curr_speed;
 }
 
+float MovableObject::get_x_accel(){
+    return x_curr_accel;
+}
+
+float MovableObject::get_y_accel(){
+    return y_curr_accel;
+}
+
+void MovableObject::set_x_speed(float x_speed){
+    x_curr_speed = x_speed;
+}
+
+void MovableObject::set_y_speed(float y_speed){
+    y_curr_speed = y_speed;
+}
+void MovableObject::set_x_accel(float x_accel){
+    x_curr_accel = x_accel;
+}
+void MovableObject::set_y_accel(float y_accel){
+    y_curr_accel = y_accel;
+}
 MovableObject::MovableObject (const char * fileName, sf::IntRect size, sf::Vector2f pos, int layout)
 : GameObject(fileName, size, pos, layout){
     x_curr_speed = y_curr_speed = 0;
@@ -87,12 +108,12 @@ void MovableObject::move(){
         else if (y_curr_speed < 0)
             y_curr_speed = -y_limit_speed;
     }
-    
+
     if (((y_curr_speed > 0 && y_curr_speed < y_min_for_x)||
         (y_curr_speed < 0 && y_curr_speed > -y_min_for_x)|| y_curr_speed == 0) && x_move_blocked){
         x_curr_speed = x_curr_accel = 0;
     }
-    (*sprite).setPosition(get_position().x + x_curr_speed, get_position().y - y_curr_speed);
+    set_position(sf::Vector2f(get_position().x + x_curr_speed,get_position().y - y_curr_speed));
 }
 
 void MovableObject::add_acceleration(direction dir)
