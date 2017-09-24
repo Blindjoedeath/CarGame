@@ -14,15 +14,15 @@
 
 sf::Vector2i Road::max_obstr_size(100, 100);
 sf::Vector2i Road::min_obstr_size(50, 50);
-float Road::lim_obstr_filled_part = 0.05;
+float Road::lim_obstr_filled_part = 0.08;
 int Road::wall_indent = 150;
 int Road::min_obstr_dist = 10;
 
 
 int Road::get_dist_from_surf(sf::Vector2f first_pos, sf::Vector2f second_pos,
                                sf::IntRect first_trans, sf::IntRect second_trans){
-    return (sqrt(pow(first_pos.x + first_trans.width/2 - second_pos.x + second_trans.width/2, 2) +
-                 pow(first_pos.y + first_trans.height/2 - second_pos.y + second_trans.height/2, 2)) -
+    return (sqrt(pow((first_pos.x + first_trans.width/2) - (second_pos.x + second_trans.width/2), 2) +
+                 pow((first_pos.y + first_trans.height/2) - (second_pos.y + second_trans.height/2), 2)) -
                 (first_trans.width/2 + second_trans.width/2)) ;
 }
 
@@ -57,8 +57,8 @@ void Road::gen_obstr(){
         {
             obstruction.push_back(new GameObject("obstruction.jpg", size, pos, 2));
             area -= size.width * size.height;
+            std::cout << "added\n";
         }
-        std::cout << "whiling\n";
     }
 }
 
