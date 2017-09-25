@@ -58,7 +58,7 @@ void GameObject::set_position(sf::Vector2f pos){
     }
 }
 
-/*
+
  GameObject* GameObject::get_child(int pos){
     if (0 <= pos && pos < child_count){
         ++child_count;
@@ -79,4 +79,4 @@ void GameObject::add_collider(Collider * coll){
 Collider* GameObject::get_collider(){
     return curr_coll;
 }
- */
+ 

@@ -117,33 +117,33 @@ void MovableObject::move(){
     set_position(sf::Vector2f(get_position().x + x_curr_speed,get_position().y - y_curr_speed));
 }
 
-void MovableObject::add_acceleration(direction dir)
+void MovableObject::add_acceleration(Utils::direction dir)
 {
     switch (dir) {
-        case direction::FRONT:
+        case Utils::direction::FRONT:
             if (y_curr_accel + y_accel_step <= y_limit_accel)
                 y_curr_accel += y_accel_step;
             break;
             
-        case direction::BACK:
+        case Utils::direction::BACK:
             if (y_curr_accel - y_accel_step >= -y_limit_accel)
                 y_curr_accel -= y_accel_step;
         
             break;
-        case direction::LEFT:
+        case Utils::direction::LEFT:
             if (x_curr_accel - x_accel_step >= -x_limit_accel)
                 x_curr_accel -= x_accel_step;
             break;
             
-        case direction::RIGHT:
+        case Utils::direction::RIGHT:
             if (x_curr_accel + x_accel_step <= x_limit_accel)
                 x_curr_accel += x_accel_step;
             break;
     }
 }
 
-void MovableObject::colide(MovableObject::direction dir){
-    if (dir == direction::BACK || dir == direction::FRONT)
+void MovableObject::colide(Utils::direction dir){
+    if (dir == Utils::direction::BACK || dir == Utils::direction::FRONT)
         x_curr_accel = -x_curr_accel * collision_koeff;
     else
         y_curr_accel = - y_curr_accel * collision_koeff;

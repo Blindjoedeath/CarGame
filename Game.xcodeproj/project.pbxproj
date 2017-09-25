@@ -13,6 +13,7 @@
 		3D3426B51F7168BD007E9907 /* music.ogg in Resources */ = {isa = PBXBuildFile; fileRef = 3D3426B41F7168BD007E9907 /* music.ogg */; };
 		3D3426B81F716B92007E9907 /* SceneManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D3426B61F716B92007E9907 /* SceneManager.cpp */; };
 		3D3426BB1F716F27007E9907 /* GameObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D3426B91F716F27007E9907 /* GameObject.cpp */; };
+		3D6040FA1F79082400DAB40B /* Utils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D6040F81F79082400DAB40B /* Utils.cpp */; };
 		3DA00CC01F72915100F9B62E /* Road.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DA00CBE1F72915100F9B62E /* Road.cpp */; };
 		3DA00CC41F72B69A00F9B62E /* Car.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DA00CC31F72B69A00F9B62E /* Car.png */; };
 		3DAAF31D1F785C7B00AF0AEE /* Collider.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DAAF31B1F785C7B00AF0AEE /* Collider.cpp */; };
@@ -33,6 +34,8 @@
 		3D3426B71F716B92007E9907 /* SceneManager.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = SceneManager.hpp; path = Classes/SceneManager.hpp; sourceTree = "<group>"; };
 		3D3426B91F716F27007E9907 /* GameObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GameObject.cpp; path = Classes/GameObject.cpp; sourceTree = "<group>"; };
 		3D3426BA1F716F27007E9907 /* GameObject.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = GameObject.hpp; path = Classes/GameObject.hpp; sourceTree = "<group>"; };
+		3D6040F81F79082400DAB40B /* Utils.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Utils.cpp; sourceTree = "<group>"; };
+		3D6040F91F79082400DAB40B /* Utils.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Utils.hpp; sourceTree = "<group>"; };
 		3DA00CBE1F72915100F9B62E /* Road.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Road.cpp; path = Classes/Road.cpp; sourceTree = "<group>"; };
 		3DA00CBF1F72915100F9B62E /* Road.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = Road.hpp; path = Classes/Road.hpp; sourceTree = "<group>"; };
 		3DA00CC31F72B69A00F9B62E /* Car.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Car.png; sourceTree = "<group>"; };
@@ -80,6 +83,8 @@
 				3D3426981F71571E007E9907 /* ResourcePath.hpp */,
 				3DAAF31C1F785C7B00AF0AEE /* Collider.hpp */,
 				3DAAF31B1F785C7B00AF0AEE /* Collider.cpp */,
+				3D6040F81F79082400DAB40B /* Utils.cpp */,
+				3D6040F91F79082400DAB40B /* Utils.hpp */,
 				3DDBF3AB1F72F9BD00526289 /* MovableObject.cpp */,
 				3DDBF3AC1F72F9BD00526289 /* MovableObject.hpp */,
 				3DA00CBE1F72915100F9B62E /* Road.cpp */,
@@ -206,6 +211,7 @@
 				3D3426BB1F716F27007E9907 /* GameObject.cpp in Sources */,
 				3DAAF31D1F785C7B00AF0AEE /* Collider.cpp in Sources */,
 				3D34269A1F71571E007E9907 /* main.cpp in Sources */,
+				3D6040FA1F79082400DAB40B /* Utils.cpp in Sources */,
 				3D3426971F71571E007E9907 /* ResourcePath.mm in Sources */,
 				3DDBF3AD1F72F9BD00526289 /* MovableObject.cpp in Sources */,
 				3DA00CC01F72915100F9B62E /* Road.cpp in Sources */,

@@ -22,23 +22,23 @@ sf::IntRect Collider::get_size(){
 }
 
 
-bool Collider::check_collision(Collider * col, MovableObject::direction & d){
+bool Collider::check_collision(Collider * col, Utils::direction & d){
     
     if (fabsf(col->get_position().x - get_position().x) <= collision_dist ||
         fabsf(col->get_position().y - get_position().y) <= collision_dist){
         if (col->get_position().y - get_position().y <= 0)
-            return MovableObject::direction::FRONT;
+            return Utils::direction::FRONT;
         if (col -> get_position().y - get_position().y > 0)
-            return MovableObject::direction::BACK;
+            return Utils::direction::BACK;
         if (col->get_position().x - get_position().x > 0)
-            return MovableObject::direction::RIGHT;
-        return MovableObject::direction::LEFT;
+            return Utils::direction::RIGHT;
+        return Utils::direction::LEFT;
     }
     return false;
 }
 
 
-bool Collider:: check_static(MovableObject::direction & dir){
+bool Collider:: check_static(Utils::direction & dir){
     for(auto it = colliders.begin(); it < colliders.end(); ++it){
         if ((*it) -> curr_mode == Collider::mode::STATIC){
             if (check_collision((*it), dir))
@@ -48,7 +48,7 @@ bool Collider:: check_static(MovableObject::direction & dir){
     return false;
 }
 
-bool Collider:: check_dynamic(MovableObject::direction & dir){
+bool Collider:: check_dynamic(Utils::direction & dir){
     for(auto it = colliders.begin(); it < colliders.end(); ++it){
         if ((*it) -> curr_mode == Collider::mode::DYNAMIC){
             if (check_collision((*it), dir))
@@ -58,7 +58,7 @@ bool Collider:: check_dynamic(MovableObject::direction & dir){
     return false;
 }
 
-bool Collider:: is_collided(MovableObject::direction & direction){
+bool Collider:: is_collided(Utils::direction & direction){
     if (curr_mode == Collider::mode::STATIC)
         return check_dynamic(direction);
     else return (check_dynamic(direction) || check_static(direction));

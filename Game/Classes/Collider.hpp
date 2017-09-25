@@ -11,7 +11,7 @@
 
 #include <stdio.h>
 #include "SFML/Graphics.hpp"
-#include <MovableObject.hpp>
+#include <Utils.hpp>
 
 class Collider{
 public:
@@ -23,12 +23,12 @@ private:
     sf::IntRect transform;
     static std::vector<Collider *> colliders;
     static int collision_dist;
-    bool check_collision(Collider *, MovableObject::direction & dir);
-    bool check_static(MovableObject::direction &);
-    bool check_dynamic(MovableObject::direction &);
+    bool check_collision(Collider *, Utils::direction & dir);
+    bool check_static(Utils::direction &);
+    bool check_dynamic(Utils::direction &);
 public:
     Collider(sf::Vector2f, sf::IntRect, mode);
-    bool is_collided(MovableObject::direction &);
+    bool is_collided(Utils::direction &);
     sf::Vector2f get_position();
     sf::IntRect get_size();
 };

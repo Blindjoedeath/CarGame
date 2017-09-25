@@ -52,7 +52,7 @@ int main (int argc, char** argv){
         {
             SceneManager::cars[i] -> move();
             SceneManager::roads[i] -> move();
-            MovableObject::direction dir;
+            Utils::direction dir;
             if (SceneManager::cars[i]->get_collider()->is_collided(dir)){
                 SceneManager::cars[i]->colide(dir);
             }

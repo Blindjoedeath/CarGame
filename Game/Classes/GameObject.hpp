@@ -21,7 +21,7 @@ class GameObject{
     sf::IntRect size;
     sf::Texture* texture;
     std::vector<GameObject*> children;
-//    Collider * curr_coll;
+    Collider * curr_coll;
     
     public :
     static int all_objects_count;
@@ -37,8 +37,8 @@ class GameObject{
     int child_count;
     GameObject* get_child(int);
     void add_child(GameObject*);
-//    void add_collider(Collider*);
-//    Collider* get_collider();
+    void add_collider(Collider*);
+    Collider* get_collider();
     
 };
 #endif /* GameObject_hpp */

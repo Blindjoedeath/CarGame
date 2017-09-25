@@ -11,6 +11,7 @@
 
 #include <stdio.h>
 #include "GameObject.hpp"
+#include <Utils.hpp>
 
 class MovableObject : public GameObject{
     private :
@@ -33,10 +34,9 @@ class MovableObject : public GameObject{
     int low_bound;
     
     public :
-    static enum direction{FRONT, BACK, RIGHT, LEFT};
     MovableObject(const char *, sf::IntRect, sf::Vector2f, int);
     void move();
-    void add_acceleration(direction);
+    void add_acceleration(Utils::direction);
     void set_x_block(bool);
     void set_x_speed(float);
     void set_y_speed(float);
@@ -46,7 +46,7 @@ class MovableObject : public GameObject{
     float get_y_speed();
     float get_x_accel();
     float get_y_accel();
-    void colide(direction);
+    void colide(Utils::direction);
 };
 
 #endif /* MovableObject_hpp */

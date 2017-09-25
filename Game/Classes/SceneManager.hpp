@@ -15,6 +15,7 @@
 #include "ResourcePath.hpp"
 #include "MovableObject.hpp"
 #include "Road.hpp"
+#include <Utils.hpp>
 
 static class SceneManager{
     private:
@@ -26,8 +27,8 @@ static class SceneManager{
     static std::map<sf::Keyboard::Key, bool> is_key_pressed;
     static void set_actions();
     static bool is_car_pos_right(MovableObject * car, Road * road);
-    static MovableObject::direction turn_direction(MovableObject::direction);
-    static void movement(MovableObject*, Road*, MovableObject::direction);
+    static Utils::direction turn_direction(Utils::direction);
+    static void movement(MovableObject*, Road*, Utils::direction);
     
     public :
     static int scr_width;

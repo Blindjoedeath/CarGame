@@ -9,6 +9,7 @@
 #include "SceneManager.hpp"
 #include <iostream>
 #include <Collider.hpp>
+#include <Utils.hpp>
 
 typedef std::map<sf::Keyboard::Key, std::function<void()>> action_map;
 typedef std::map<sf::Keyboard::Key, bool>  bool_map;
@@ -29,16 +30,16 @@ sf::Music* SceneManager::music;
 
 
 
-MovableObject::direction SceneManager::turn_direction(MovableObject::direction dir){
+Utils::direction SceneManager::turn_direction(Utils::direction dir){
     switch(dir){
-        case  MovableObject::direction::BACK:
-            return MovableObject::direction::FRONT;
-        case MovableObject::direction::FRONT:
-            return MovableObject::direction::BACK;
-        case  MovableObject::direction::LEFT:
-            return MovableObject::direction::RIGHT;
-        case MovableObject::direction::RIGHT:
-            return MovableObject::direction::LEFT;
+        case  Utils::direction::BACK:
+            return Utils::direction::FRONT;
+        case Utils::direction::FRONT:
+            return Utils::direction::BACK;
+        case  Utils::direction::LEFT:
+            return Utils::direction::RIGHT;
+        case Utils::direction::RIGHT:
+            return Utils::direction::LEFT;
     }
     return;
 }
@@ -49,9 +50,9 @@ bool SceneManager::is_car_pos_right(MovableObject *car, Road *road){
     return false;
 }
 
-void SceneManager::movement(MovableObject * car, Road * road, MovableObject::direction dir){
+void SceneManager::movement(MovableObject * car, Road * road, Utils::direction dir){
     car->set_x_block(!(road->get_y_speed() > 0.001 || road->get_y_speed() < -0.001));
-    if (is_car_pos_right(car, road) && dir != MovableObject::direction::LEFT && dir != MovableObject::direction::RIGHT){
+    if (is_car_pos_right(car, road) && dir != Utils::direction::LEFT && dir != Utils::direction::RIGHT){
         if (car->get_y_speed() != 0){
             road->set_y_speed(-car->get_y_speed());
             road->set_y_accel(-car->get_y_accel());
@@ -80,14 +81,14 @@ void SceneManager::set_key_state(sf::Keyboard::Key key,sf::Event::EventType even
 }
 
 void SceneManager::set_actions(){
-    key_actions[sf::Keyboard::W] = [](){movement(cars[0], roads[0], MovableObject::direction::FRONT);};
-    key_actions[sf::Keyboard::S] = [](){movement(cars[0], roads[0], MovableObject::direction::BACK);};
-    key_actions[sf::Keyboard::A] = [](){movement(cars[0], roads[0], MovableObject::direction::LEFT);};
-    key_actions[sf::Keyboard::D] = [](){movement(cars[0], roads[0], MovableObject::direction::RIGHT);};
-    key_actions[sf::Keyboard::Up] = [](){movement(cars[1], roads[1], MovableObject::direction::FRONT);};
-    key_actions[sf::Keyboard::Down] = [](){movement(cars[1], roads[1], MovableObject::direction::BACK);};
-    key_actions[sf::Keyboard::Left] = [](){movement(cars[1], roads[1], MovableObject::direction::LEFT);};
-    key_actions[sf::Keyboard::Right] = [](){movement(cars[1], roads[1], MovableObject::direction::RIGHT);};
+    key_actions[sf::Keyboard::W] = [](){movement(cars[0], roads[0], Utils::direction::FRONT);};
+    key_actions[sf::Keyboard::S] = [](){movement(cars[0], roads[0], Utils::direction::BACK);};
+    key_actions[sf::Keyboard::A] = [](){movement(cars[0], roads[0], Utils::direction::LEFT);};
+    key_actions[sf::Keyboard::D] = [](){movement(cars[0], roads[0], Utils::direction::RIGHT);};
+    key_actions[sf::Keyboard::Up] = [](){movement(cars[1], roads[1], Utils::direction::FRONT);};
+    key_actions[sf::Keyboard::Down] = [](){movement(cars[1], roads[1], Utils::direction::BACK);};
+    key_actions[sf::Keyboard::Left] = [](){movement(cars[1], roads[1], Utils::direction::LEFT);};
+    key_actions[sf::Keyboard::Right] = [](){movement(cars[1], roads[1], Utils::direction::RIGHT);};
     for (action_map::iterator it = key_actions.begin(); it!=key_actions.end(); ++it){
         is_key_pressed[it->first] = false;
     }
@@ -113,7 +114,7 @@ void SceneManager :: create_window(){
         car_size.width = car_width;
         car_size.height = car_height;
         cars.push_back(new MovableObject("car.png", car_size, car_pos, 2));
-//        cars[i]->add_collider(new Collider(cars[i]->get_position(), cars[i]->get_size(), Collider::mode::DYNAMIC));
+        cars[i]->add_collider(new Collider(cars[i]->get_position(), cars[i]->get_size(), Collider::mode::DYNAMIC));
     }
     set_actions();
 }
