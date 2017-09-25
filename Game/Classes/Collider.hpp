@@ -23,7 +23,7 @@ private:
     sf::IntRect transform;
     static std::vector<Collider *> colliders;
     static int collision_dist;
-    bool check_collision(Collider *, MovableObject::direction &);
+    bool check_collision(Collider *, MovableObject::direction & dir);
     bool check_static(MovableObject::direction &);
     bool check_dynamic(MovableObject::direction &);
 public:

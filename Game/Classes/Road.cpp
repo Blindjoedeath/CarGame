@@ -18,6 +18,11 @@ float Road::lim_obstr_filled_part = 0.08;
 int Road::wall_indent = 150;
 int Road::min_obstr_dist = 10;
 
+GameObject* Road::add_obstruction(GameObject * obj){
+    obstruction.push_back(obj);
+    return obj;
+}
+
 
 int Road::get_dist_from_surf(sf::Vector2f first_pos, sf::Vector2f second_pos,
                                sf::IntRect first_trans, sf::IntRect second_trans){
@@ -34,7 +39,7 @@ void Road::gen_obstr(){
         sf::Vector2f pos;
         pos.x = get_position().x + wall_indent +
             rand() % (get_size().width - wall_indent*2);
-        pos.y = -rand() % get_size().height + SceneManager::scr_height;
+        pos.y = -rand() % (get_size().height - SceneManager::scr_height);
         
         sf::IntRect size;
         size.width = min_obstr_size.x + rand() % (max_obstr_size.x - min_obstr_size.x);
@@ -55,7 +60,8 @@ void Road::gen_obstr(){
         }
         if (isCorrect)
         {
-            obstruction.push_back(new GameObject("obstruction.jpg", size, pos, 2));
+            add_obstruction(new GameObject("obstruction.jpg", size, pos, 2))
+                ->add_collider(new Collider(pos, size, Collider::mode::STATIC));
             area -= size.width * size.height;
             std::cout << "added\n";
         }

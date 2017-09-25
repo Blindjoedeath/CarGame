@@ -13,7 +13,6 @@
 #include "GameObject.hpp"
 
 class MovableObject : public GameObject{
-    
     private :
     static float x_limit_accel;
     static float y_limit_accel;
@@ -24,6 +23,7 @@ class MovableObject : public GameObject{
     static float x_friction;
     static float y_friction;
     static float y_min_for_x;
+    static float collision_koeff;
     float x_curr_accel;
     float y_curr_accel;
     float x_curr_speed;
@@ -46,6 +46,7 @@ class MovableObject : public GameObject{
     float get_y_speed();
     float get_x_accel();
     float get_y_accel();
+    void colide(direction);
 };
 
 #endif /* MovableObject_hpp */

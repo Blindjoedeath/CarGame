@@ -23,6 +23,7 @@ class Road : public MovableObject{
     static float lim_obstr_filled_part;
     static int wall_indent;
     static int min_obstr_dist;
+    GameObject * add_obstruction(GameObject *);
     
     public :
     Road(const char *, sf::IntRect, sf::Vector2f, int);

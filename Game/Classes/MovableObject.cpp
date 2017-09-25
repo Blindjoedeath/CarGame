@@ -20,6 +20,7 @@ float MovableObject::y_limit_speed = 0.8;
 float MovableObject::x_friction = 0.00025;
 float MovableObject::y_friction = 0.00045;
 float MovableObject::y_min_for_x = 0.3;
+float MovableObject::collision_koeff = 0.6;
 
 void MovableObject::set_x_block(bool b){
     x_move_blocked = b;
@@ -139,4 +140,11 @@ void MovableObject::add_acceleration(direction dir)
                 x_curr_accel += x_accel_step;
             break;
     }
+}
+
+void MovableObject::colide(MovableObject::direction dir){
+    if (dir == direction::BACK || dir == direction::FRONT)
+        x_curr_accel = -x_curr_accel * collision_koeff;
+    else
+        y_curr_accel = - y_curr_accel * collision_koeff;
 }
