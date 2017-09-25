@@ -27,10 +27,11 @@ private:
     bool check_static(Utils::direction &);
     bool check_dynamic(Utils::direction &);
 public:
-    Collider(sf::Vector2f, sf::IntRect, mode);
+    Collider(sf::Vector2f , sf::IntRect , mode);
     bool is_collided(Utils::direction &);
     sf::Vector2f get_position();
     sf::IntRect get_size();
+    void set_position(sf::Vector2f);
 };
 
 #endif /* Collider_hpp */

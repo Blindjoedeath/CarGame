@@ -44,6 +44,7 @@ static class SceneManager{
     static std::vector<MovableObject*> cars;
     static std::vector<Road*> roads;
     static void move_cars();
+    static void collide(int , Utils::direction);
 };
 
 #endif /* SceneManager_hpp */

@@ -60,7 +60,7 @@ void Road::gen_obstr(){
         }
         if (isCorrect)
         {
-            add_obstruction(new GameObject("obstruction.jpg", size, pos, 2))
+            Collider * coll = add_obstruction(new GameObject("obstruction.jpg", size, pos, 2))
                 ->add_collider(new Collider(pos, size, Collider::mode::STATIC));
             area -= size.width * size.height;
             std::cout << "added\n";

@@ -65,6 +65,10 @@ void SceneManager::movement(MovableObject * car, Road * road, Utils::direction d
         car->add_acceleration(dir);
 }
 
+void SceneManager::collide(int car_num, Utils::direction dir){
+    roads[car_num]->colide(turn_direction(dir));
+}
+
 void SceneManager::execute_actions(){
     for (action_map::iterator it = key_actions.begin(); it!=key_actions.end(); ++it){
         if (is_key_pressed[it->first]){

@@ -37,7 +37,7 @@ class GameObject{
     int child_count;
     GameObject* get_child(int);
     void add_child(GameObject*);
-    void add_collider(Collider*);
+    Collider* add_collider(Collider*);
     Collider* get_collider();
     
 };

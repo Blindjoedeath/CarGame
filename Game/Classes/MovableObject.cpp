@@ -143,8 +143,10 @@ void MovableObject::add_acceleration(Utils::direction dir)
 }
 
 void MovableObject::colide(Utils::direction dir){
-    if (dir == Utils::direction::BACK || dir == Utils::direction::FRONT)
-        x_curr_accel = -x_curr_accel * collision_koeff;
+    if (dir == Utils::direction::BACK || dir == Utils::direction::FRONT){
+        y_curr_accel = -y_curr_accel * collision_koeff;
+        y_curr_speed = -y_curr_speed * collision_koeff;
+    }
     else
         y_curr_accel = - y_curr_accel * collision_koeff;
 }

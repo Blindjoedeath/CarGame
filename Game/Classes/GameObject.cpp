@@ -26,6 +26,7 @@ GameObject::GameObject (const char * fileName, sf::IntRect transform, sf::Vector
     child_count = 0;
     ++all_objects_count;
     all_objects.push_back(this);
+    curr_coll = NULL;
 }
 
 GameObject::~GameObject(){
@@ -50,11 +51,14 @@ sf::IntRect GameObject::get_size(){
 }
 
 void GameObject::set_position(sf::Vector2f pos){
-    sf::Vector2f buffer;
-    buffer = pos - (*sprite).getPosition();
+    sf::Vector2f differ;
+    differ = pos - (*sprite).getPosition();
     (*sprite).setPosition(pos);
+    if (curr_coll != NULL){
+        curr_coll -> set_position(curr_coll->get_position() + differ);
+    }
     for (int i = 0; i < child_count; ++i){
-        children[i]->set_position(children[i]->get_position() + buffer);
+        children[i]->set_position(children[i]->get_position() + differ);
     }
 }
 
@@ -72,8 +76,9 @@ void GameObject::add_child(GameObject * obj){
     children.push_back(obj);
 }
 
-void GameObject::add_collider(Collider * coll){
+Collider* GameObject::add_collider(Collider * coll){
     curr_coll = coll;
+    return coll;
 }
 
 Collider* GameObject::get_collider(){

@@ -8,10 +8,11 @@
 
 #include "Collider.hpp"
 #include <cmath>
+#include <iostream>
 
 
 std::vector<Collider*> Collider::colliders;
-int Collider::collision_dist = 5;
+int Collider::collision_dist = 1;
 
 sf::Vector2f Collider::get_position(){
     return pos;
@@ -21,18 +22,22 @@ sf::IntRect Collider::get_size(){
     return transform;
 }
 
+void Collider::set_position(sf::Vector2f position){
+    pos.x = position.x;
+    pos.y = position.y;
+}
+
 
 bool Collider::check_collision(Collider * col, Utils::direction & d){
-    
-    if (fabsf(col->get_position().x - get_position().x) <= collision_dist ||
-        fabsf(col->get_position().y - get_position().y) <= collision_dist){
-        if (col->get_position().y - get_position().y <= 0)
-            return Utils::direction::FRONT;
-        if (col -> get_position().y - get_position().y > 0)
-            return Utils::direction::BACK;
-        if (col->get_position().x - get_position().x > 0)
-            return Utils::direction::RIGHT;
-        return Utils::direction::LEFT;
+    if (col != this)
+    {
+        if ((get_position().y - (col->get_position().y + col->get_size().height) <= collision_dist) &&
+            get_position().x >= (col ->get_position().x - get_size().width) &&
+            get_position().x <= col->get_position().x + col->get_size().width){
+            d = Utils::direction::FRONT;
+            std::cout <<"BAM";
+            return true;
+        }
     }
     return false;
 }
