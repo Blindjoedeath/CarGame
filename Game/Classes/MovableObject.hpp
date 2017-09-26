@@ -32,6 +32,7 @@ class MovableObject : public GameObject{
     bool x_move_blocked;
     int upp_bound;
     int low_bound;
+    int get_sign(float f);
     
     public :
     MovableObject(const char *, sf::IntRect, sf::Vector2f, int);

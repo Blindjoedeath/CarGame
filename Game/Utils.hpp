@@ -14,6 +14,8 @@
 class Utils{
 public:
     static enum direction{FRONT, BACK, LEFT, RIGHT};
+    template <typename T>
+    static int get_sign(T);
 };
 
 #endif /* Utils_hpp */

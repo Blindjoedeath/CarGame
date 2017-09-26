@@ -51,7 +51,6 @@ void Road::gen_obstr(){
             for (int i = 0; i < obstruction.size(); ++i)
             {
                 int dist = get_dist_from_surf(pos, obstruction[i]->get_position(), size, obstruction[i]->get_size());
-                std::cout << dist << std::endl;
                 if (dist < min_obstr_dist){
                     isCorrect = false;
                     break;
@@ -63,7 +62,6 @@ void Road::gen_obstr(){
             Collider * coll = add_obstruction(new GameObject("obstruction.jpg", size, pos, 2))
                 ->add_collider(new Collider(pos, size, Collider::mode::STATIC));
             area -= size.width * size.height;
-            std::cout << "added\n";
         }
     }
 }

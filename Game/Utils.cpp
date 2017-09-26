@@ -7,3 +7,10 @@
 //
 
 #include "Utils.hpp"
+
+template <typename T>
+int Utils::get_sign(T t){
+    if (t > 0)
+        return 1;
+    return -1;
+}

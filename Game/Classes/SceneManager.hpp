@@ -35,7 +35,6 @@ static class SceneManager{
     static int scr_height;
     static int road_width;
     static int road_height;
-    static int y_min_speed;
     static int layers_count;
     static sf::RenderWindow * window;
     static sf::Music * music;

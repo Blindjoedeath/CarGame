@@ -147,6 +147,8 @@ void MovableObject::colide(Utils::direction dir){
         y_curr_accel = -y_curr_accel * collision_koeff;
         y_curr_speed = -y_curr_speed * collision_koeff;
     }
-    else
-        y_curr_accel = - y_curr_accel * collision_koeff;
+    else{
+        x_curr_accel = -x_curr_accel * collision_koeff;
+        x_curr_speed = -x_curr_speed * collision_koeff;
+    }
 }

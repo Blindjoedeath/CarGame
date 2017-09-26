@@ -18,6 +18,7 @@
 #include <SFML/Graphics.hpp>
 #include "SceneManager.hpp"
 #include <iostream>
+#include <cmath>
 
 
 int main (int argc, char** argv){
@@ -52,11 +53,34 @@ int main (int argc, char** argv){
             SceneManager::cars[i] -> move();
             SceneManager::roads[i] -> move();
             Utils::direction dir;
-            if (SceneManager::cars[i]->get_collider()->is_collided(dir) &&
-                SceneManager::roads[i]->get_y_speed() <= SceneManager::y_min_speed){
-                SceneManager::collide(i, dir);
+            if (SceneManager::cars[i]->get_collider()->is_collided(dir)){
+                bool collide = true;
+                switch(dir){
+                    case Utils::direction::FRONT:{
+                        if(SceneManager::roads[i]->get_y_speed() > 0)
+                            collide = false;
+                        break;
+                    }
+                    case Utils::direction::BACK:{
+                        if (SceneManager::roads[i]->get_y_speed() < 0)
+                            collide = false;
+                        break;
+                    }
+                    case Utils::direction::RIGHT:{
+                        if(SceneManager::cars[i]->get_x_speed() < 0)
+                            collide = false;
+                        break;
+                    }
+                    case Utils::direction::LEFT:{
+                        if (SceneManager::cars[i]->get_x_speed() > 0)
+                            collide = false;
+                        break;
+                    }
+                }
+                if (collide){
+                    SceneManager::collide(i, dir);
+                }
             }
-        std::cout << SceneManager::roads[i]->get_y_speed() << std::endl;
         }
         (*SceneManager::window).display();
     }
