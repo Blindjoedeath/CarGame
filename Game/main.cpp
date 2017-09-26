@@ -20,7 +20,6 @@
 #include <iostream>
 
 
-
 int main (int argc, char** argv){
     
     SceneManager::create_window();
@@ -53,9 +52,11 @@ int main (int argc, char** argv){
             SceneManager::cars[i] -> move();
             SceneManager::roads[i] -> move();
             Utils::direction dir;
-            if (SceneManager::cars[i]->get_collider()->is_collided(dir)){
+            if (SceneManager::cars[i]->get_collider()->is_collided(dir) &&
+                SceneManager::roads[i]->get_y_speed() <= SceneManager::y_min_speed){
                 SceneManager::collide(i, dir);
             }
+        std::cout << SceneManager::roads[i]->get_y_speed() << std::endl;
         }
         (*SceneManager::window).display();
     }

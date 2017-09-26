@@ -21,6 +21,7 @@ int SceneManager::car_height = 120;
 int SceneManager::layers_count = 2;
 int SceneManager::players_count = 2;
 int SceneManager::y_right_car_pos = 430;
+int SceneManager::y_min_speed = -0.3;
 action_map SceneManager::key_actions;
 bool_map SceneManager::is_key_pressed;
 std::vector<Road*> SceneManager::roads;

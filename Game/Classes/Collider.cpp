@@ -12,7 +12,7 @@
 
 
 std::vector<Collider*> Collider::colliders;
-int Collider::collision_dist = 1;
+int Collider::collision_dist = 2;
 
 sf::Vector2f Collider::get_position(){
     return pos;
@@ -32,6 +32,7 @@ bool Collider::check_collision(Collider * col, Utils::direction & d){
     if (col != this)
     {
         if ((get_position().y - (col->get_position().y + col->get_size().height) <= collision_dist) &&
+            get_position().y - (col->get_position().y + col->get_size().height) > 0 &&
             get_position().x >= (col ->get_position().x - get_size().width) &&
             get_position().x <= col->get_position().x + col->get_size().width){
             d = Utils::direction::FRONT;
