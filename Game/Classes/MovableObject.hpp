@@ -47,7 +47,7 @@ class MovableObject : public GameObject{
     float get_y_speed();
     float get_x_accel();
     float get_y_accel();
-    void colide(Utils::direction);
+    void collide(Utils::direction);
 };
 
 #endif /* MovableObject_hpp */

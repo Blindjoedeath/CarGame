@@ -48,40 +48,7 @@ int main (int argc, char** argv){
             for (int i = 0; i < GameObject::all_objects_count; ++i)
                 if (GameObject::all_objects[i] -> get_layer() == j)
                     (*SceneManager::window).draw(*GameObject::all_objects[i]->get_sprite());
-        for (int i = 0; i < 2; ++i)
-        {
-            SceneManager::cars[i] -> move();
-            SceneManager::roads[i] -> move();
-            Utils::direction dir;
-            if (SceneManager::cars[i]->get_collider()->is_collided(dir)){
-                bool collide = true;
-                switch(dir){
-                    case Utils::direction::FRONT:{
-                        if(SceneManager::roads[i]->get_y_speed() > 0)
-                            collide = false;
-                        break;
-                    }
-                    case Utils::direction::BACK:{
-                        if (SceneManager::roads[i]->get_y_speed() < 0)
-                            collide = false;
-                        break;
-                    }
-                    case Utils::direction::RIGHT:{
-                        if(SceneManager::cars[i]->get_x_speed() < 0)
-                            collide = false;
-                        break;
-                    }
-                    case Utils::direction::LEFT:{
-                        if (SceneManager::cars[i]->get_x_speed() > 0)
-                            collide = false;
-                        break;
-                    }
-                }
-                if (collide){
-                    SceneManager::collide(i, dir);
-                }
-            }
-        }
+        SceneManager::move_cars();
         (*SceneManager::window).display();
     }
     (*SceneManager::music).~Music();

@@ -57,6 +57,7 @@ bool Collider::check_collision(Collider * col, Utils::direction & d){
             get_position().x - (col->get_position().x + col->get_size().width) > 0 &&
             col->get_position().y >= get_position().y - col->get_size().height &&
             col->get_position().y <= get_position().y + get_size().height){
+            d = Utils::direction::LEFT;
             return true;
         }
     }

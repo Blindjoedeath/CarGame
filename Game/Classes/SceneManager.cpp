@@ -21,6 +21,10 @@ int SceneManager::car_height = 120;
 int SceneManager::layers_count = 2;
 int SceneManager::players_count = 2;
 int SceneManager::y_right_car_pos = 430;
+int SceneManager::road_lower_bound;
+int SceneManager::road_upper_bound;
+int SceneManager::car_lower_bound;
+int SceneManager::car_upper_bound;
 action_map SceneManager::key_actions;
 bool_map SceneManager::is_key_pressed;
 std::vector<Road*> SceneManager::roads;
@@ -52,7 +56,9 @@ bool SceneManager::is_car_pos_right(MovableObject *car, Road *road){
 
 void SceneManager::movement(MovableObject * car, Road * road, Utils::direction dir){
     car->set_x_block(!(road->get_y_speed() > 0.001 || road->get_y_speed() < -0.001));
-    if (is_car_pos_right(car, road) && dir != Utils::direction::LEFT && dir != Utils::direction::RIGHT){
+    if (is_car_pos_right(car, road) && road -> get_position().y >= road_lower_bound &&
+        road->get_position().y <= road_upper_bound && dir != Utils::direction::LEFT &&
+        dir != Utils::direction::RIGHT){
         if (car->get_y_speed() != 0){
             road->set_y_speed(-car->get_y_speed());
             road->set_y_accel(-car->get_y_accel());
@@ -61,16 +67,55 @@ void SceneManager::movement(MovableObject * car, Road * road, Utils::direction d
         }
         road->add_acceleration(turn_direction(dir));
     }
-    else
-        car->add_acceleration(dir);
+    else{
+        if (car->get_position().y <= car_lower_bound)
+            car->collide(Utils::direction::FRONT);
+        else if (car -> get_position().y > car_upper_bound)
+            car->collide(Utils::direction::BACK);
+        else car->add_acceleration(dir);
+    }
 }
 
 void SceneManager::collide(int car_num, Utils::direction dir){
-    if (dir == Utils::direction::BACK || dir == Utils::direction::FRONT)
-        roads[car_num]->colide(turn_direction(dir));
-    else
-        cars[car_num]->colide(dir);
-    std::cout << "Collision\n";
+    bool collide = true;
+    switch(dir){
+        case Utils::direction::FRONT:{
+            if(SceneManager::roads[car_num]->get_y_speed() > 0)
+                collide = false;
+            break;
+        }
+        case Utils::direction::BACK:{
+            if (SceneManager::roads[car_num]->get_y_speed() < 0)
+                collide = false;
+            break;
+        }
+        case Utils::direction::RIGHT:{
+            if(SceneManager::cars[car_num]->get_x_speed() < 0)
+                collide = false;
+            break;
+        }
+        case Utils::direction::LEFT:{
+            if (SceneManager::cars[car_num]->get_x_speed() > 0)
+                collide = false;
+            break;
+        }
+    }
+    if (collide){
+        if (dir == Utils::direction::BACK || dir == Utils::direction::FRONT)
+            roads[car_num]->collide(turn_direction(dir));
+        else
+            cars[car_num]->collide(dir);
+    }
+}
+
+void SceneManager::check_collission(){
+    
+    for (int i = 0; i < 2; ++i){
+        Utils::direction dir;
+        if (SceneManager::cars[i]->get_collider()->is_collided(dir)){
+            collide(i, dir);
+        }
+    }
 }
 
 void SceneManager::execute_actions(){
@@ -86,6 +131,14 @@ void SceneManager::set_key_state(sf::Keyboard::Key key,sf::Event::EventType even
         is_key_pressed[key] = true;
     if (event == sf::Event::KeyReleased)
         is_key_pressed[key] = false;
+}
+
+void SceneManager::move_cars(){
+    check_collission();
+    for (int i = 0; i < 2; ++i){
+        cars[i]->move();
+        roads[i]->move();
+    }
 }
 
 void SceneManager::set_actions(){
@@ -123,7 +176,13 @@ void SceneManager :: create_window(){
         car_size.height = car_height;
         cars.push_back(new MovableObject("car.png", car_size, car_pos, 2));
         cars[i]->add_collider(new Collider(cars[i]->get_position(), cars[i]->get_size(), Collider::mode::DYNAMIC));
+        roads[i]->set_position
+            (sf::Vector2f(roads[i]->get_position().x, roads[i]->get_position().y + cars[i]->get_size().height));
     }
+    road_upper_bound = -cars[0]->get_size().height;
+    road_lower_bound = roads[0]->get_position().y;
+    car_upper_bound = scr_height - cars[0]->get_size().height;
+    car_lower_bound = 0;
     set_actions();
 }
 

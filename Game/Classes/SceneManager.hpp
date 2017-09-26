@@ -23,12 +23,17 @@ static class SceneManager{
     static int car_height;
     static int players_count;
     static int y_right_car_pos;
+    static int road_upper_bound;
+    static int road_lower_bound;
+    static int car_upper_bound;
+    static int car_lower_bound;
     static std::map<sf::Keyboard::Key, std::function<void()>> key_actions;
     static std::map<sf::Keyboard::Key, bool> is_key_pressed;
     static void set_actions();
     static bool is_car_pos_right(MovableObject * car, Road * road);
     static Utils::direction turn_direction(Utils::direction);
     static void movement(MovableObject*, Road*, Utils::direction);
+    static void collide(int, Utils::direction);
     
     public :
     static int scr_width;
@@ -44,7 +49,7 @@ static class SceneManager{
     static std::vector<MovableObject*> cars;
     static std::vector<Road*> roads;
     static void move_cars();
-    static void collide(int , Utils::direction);
+    static void check_collission();
 };
 
 #endif /* SceneManager_hpp */
