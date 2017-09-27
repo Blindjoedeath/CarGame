@@ -20,7 +20,8 @@ int SceneManager::car_width = 80;
 int SceneManager::car_height = 120;
 int SceneManager::layers_count = 2;
 int SceneManager::players_count = 2;
-int SceneManager::y_right_car_pos = 430;
+int SceneManager::y_right_car_pos = 400;
+int SceneManager::indent_width = 50;
 int SceneManager::road_lower_bound;
 int SceneManager::road_upper_bound;
 int SceneManager::car_lower_bound;
@@ -29,10 +30,25 @@ action_map SceneManager::key_actions;
 bool_map SceneManager::is_key_pressed;
 std::vector<Road*> SceneManager::roads;
 std::vector<MovableObject*> SceneManager::cars;
+std::vector<Collider*> SceneManager::indents;
 sf::RenderWindow* SceneManager::window;
 sf::Music* SceneManager::music;
 
 
+
+void SceneManager::create_indents(){
+    sf::IntRect size;
+    size.width = indent_width;
+    size.height = scr_height;
+    sf::Vector2f pos(roads[0]->get_position().x, 0);
+    indents.push_back(new Collider(pos, size , Collider::STATIC));
+    pos.x = roads[0]->get_position().x + roads[0]->get_size().width - indent_width;
+    indents.push_back(new Collider(pos, size, Collider::STATIC));
+    pos.x = roads[1]->get_position().x;
+    indents.push_back(new Collider(pos, size, Collider::STATIC));
+    pos.x = roads[1]->get_position().x + roads[1]->get_size().width - indent_width;
+    indents.push_back(new Collider(pos, size, Collider::STATIC));
+}
 
 Utils::direction SceneManager::turn_direction(Utils::direction dir){
     switch(dir){
@@ -88,8 +104,6 @@ void SceneManager::collide(int car_num, Utils::direction dir){
                 if(roads[car_num]->get_y_speed() >= 0){
                     collide = false;
                 }
-                else{
-                }
             }
             else {
                 if (cars[car_num]->get_y_speed() <= 0){
@@ -102,7 +116,6 @@ void SceneManager::collide(int car_num, Utils::direction dir){
             if (is_car_pos_right(cars[car_num], roads[car_num])){
                 if (roads[car_num]->get_y_speed() <= 0){
                     collide = false;
-
                 }
             }
             else {
@@ -209,5 +222,6 @@ void SceneManager :: create_window(){
     car_upper_bound = scr_height - cars[0]->get_size().height;
     car_lower_bound = 0;
     set_actions();
+    create_indents();
 }
 

@@ -27,13 +27,16 @@ static class SceneManager{
     static int road_lower_bound;
     static int car_upper_bound;
     static int car_lower_bound;
+    static int indent_width;
     static std::map<sf::Keyboard::Key, std::function<void()>> key_actions;
     static std::map<sf::Keyboard::Key, bool> is_key_pressed;
+    static std::vector<Collider *> indents;
     static void set_actions();
     static bool is_car_pos_right(MovableObject * car, Road * road);
     static Utils::direction turn_direction(Utils::direction);
     static void movement(int, Utils::direction);
     static void collide(int, Utils::direction);
+    static void create_indents();
     
     public :
     static int scr_width;
