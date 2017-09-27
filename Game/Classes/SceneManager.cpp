@@ -55,12 +55,11 @@ bool SceneManager::is_car_pos_right(MovableObject *car, Road *road){
 }
 
 void SceneManager::movement(int car_num, Utils::direction dir){
-    std::cout << dir << std::endl;
     MovableObject * car = cars[car_num];
     Road * road = roads[car_num];
     car->set_x_block(!(road->get_y_speed() > 0.001 || road->get_y_speed() < -0.001));
     if (is_car_pos_right(car, road) && (road -> get_position().y >= road_lower_bound || dir==Utils::FRONT) &&
-        (road->get_position().y <= road_upper_bound || dir == Utils::BACK) && dir != Utils::direction::LEFT &&
+        (road->get_position().y <= road_upper_bound || dir == Utils::BACK) && dir != Utils::LEFT &&
         dir != Utils::direction::RIGHT){
         if (car->get_y_speed() != 0){
             road->set_y_speed(-car->get_y_speed());
@@ -83,47 +82,46 @@ void SceneManager::movement(int car_num, Utils::direction dir){
 
 void SceneManager::collide(int car_num, Utils::direction dir){
     bool collide = true;
-    std::cout << dir << std::endl;
     switch(dir){
         case Utils::direction::FRONT:{
             if (is_car_pos_right(cars[car_num], roads[car_num])){
-                if(roads[car_num]->get_y_speed() > 0){
+                if(roads[car_num]->get_y_speed() >= 0){
                     collide = false;
+                }
+                else{
                 }
             }
             else {
-                if (cars[car_num]->get_y_speed() < 0){
+                if (cars[car_num]->get_y_speed() <= 0){
                     collide = false;
                 }
             }
-            break;
         }
+            break;
         case Utils::direction::BACK:{
             if (is_car_pos_right(cars[car_num], roads[car_num])){
-                if (roads[car_num]->get_y_speed() < 0){
+                if (roads[car_num]->get_y_speed() <= 0){
                     collide = false;
-                    std :: cout << "right pos " << collide<<"\n" ;
+
                 }
-                
             }
             else {
-                if (cars[car_num]->get_y_speed() > 0){
+                if (cars[car_num]->get_y_speed() >= 0){
                     collide = false;
-                    std :: cout << "not right pos " << collide<<"\n" ;
                 }
             }
-            break;
         }
+            break;
         case Utils::direction::RIGHT:{
-            if(cars[car_num]->get_x_speed() < 0)
+            if(cars[car_num]->get_x_speed() <= 0)
                 collide = false;
-            break;
         }
+            break;
         case Utils::direction::LEFT:{
-            if (cars[car_num]->get_x_speed() > 0)
+            if (cars[car_num]->get_x_speed() >= 0)
                 collide = false;
-            break;
         }
+            break;
     }
     if (collide){
         if (is_car_pos_right(cars[car_num], roads[car_num]) &&
