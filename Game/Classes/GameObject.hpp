@@ -24,7 +24,6 @@ class GameObject{
     Collider * curr_coll;
     
     public :
-    static int all_objects_count;
     static std::vector<GameObject*> all_objects;
     static float distanse(GameObject *, GameObject *);
     GameObject(const char *, sf::IntRect, sf::Vector2f, int);

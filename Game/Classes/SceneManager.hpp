@@ -25,9 +25,11 @@ static class SceneManager{
     static int road_lower_bound;
     static int car_upper_bound;
     static int car_lower_bound;
+    static int table_height;
     static std::map<sf::Keyboard::Key, std::function<void()>> key_actions;
     static std::map<sf::Keyboard::Key, bool> is_key_pressed;
     static std::vector<Collider *> indents;
+    static GameObject * table;
     static void set_actions();
     static bool is_car_pos_right(MovableObject * car, Road * road);
     static Utils::direction turn_direction(Utils::direction);

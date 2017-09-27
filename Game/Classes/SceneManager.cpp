@@ -18,10 +18,11 @@ int SceneManager::scr_height = 600;
 int SceneManager::scr_width = 1000;
 int SceneManager::car_width = 80;
 int SceneManager::car_height = 120;
-int SceneManager::layers_count = 2;
+int SceneManager::layers_count = 3;
 int SceneManager::players_count = 2;
 int SceneManager::y_right_car_pos = 400;
 int SceneManager::indent_width = 50;
+int SceneManager::table_height = 100;
 int SceneManager::road_lower_bound;
 int SceneManager::road_upper_bound;
 int SceneManager::car_lower_bound;
@@ -33,7 +34,7 @@ std::vector<MovableObject*> SceneManager::cars;
 std::vector<Collider*> SceneManager::indents;
 sf::RenderWindow* SceneManager::window;
 sf::Music* SceneManager::music;
-
+GameObject * SceneManager::table;
 
 
 void SceneManager::create_indents(){
@@ -196,7 +197,7 @@ void SceneManager::set_actions(){
 void SceneManager :: create_window(){
     window = new sf::RenderWindow();
     music = new sf::Music();
-    (*window).create(sf::VideoMode(scr_width, scr_height), "Game");
+    (*window).create(sf::VideoMode(scr_width , scr_height + table_height), "Game");
     if (!(*music).openFromFile(resourcePath() + "music.ogg")){
         return EXIT_FAILURE;
     }
@@ -223,5 +224,9 @@ void SceneManager :: create_window(){
     car_lower_bound = 0;
     set_actions();
     create_indents();
+    sf::IntRect size;
+    size.width = scr_width;
+    size.height = table_height;
+    table = new GameObject("table.png", size, sf::Vector2f (0,0), 3);
 }
 

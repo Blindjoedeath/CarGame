@@ -11,7 +11,6 @@
 #include <iostream>
 
 std::vector<GameObject*> GameObject::all_objects;
-int GameObject::all_objects_count = 0;
 
 GameObject::GameObject (const char * fileName, sf::IntRect transform, sf::Vector2f position, int layer_num){
     layer = layer_num;
@@ -24,7 +23,6 @@ GameObject::GameObject (const char * fileName, sf::IntRect transform, sf::Vector
     (*sprite).setPosition(position);
     size = transform;
     child_count = 0;
-    ++all_objects_count;
     all_objects.push_back(this);
     curr_coll = NULL;
 }

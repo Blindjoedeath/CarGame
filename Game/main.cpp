@@ -45,7 +45,7 @@ int main (int argc, char** argv){
         SceneManager::execute_actions();
         (*SceneManager::window).clear();
         for (int j = 1; j <= SceneManager::layers_count; ++j)
-            for (int i = 0; i < GameObject::all_objects_count; ++i)
+            for (int i = 0; i < GameObject::all_objects.size(); ++i)
                 if (GameObject::all_objects[i] -> get_layer() == j)
                     (*SceneManager::window).draw(*GameObject::all_objects[i]->get_sprite());
         SceneManager::move_cars();
