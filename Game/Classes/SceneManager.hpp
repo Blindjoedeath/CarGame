@@ -19,15 +19,12 @@
 
 static class SceneManager{
     private:
-    static int car_width;
-    static int car_height;
     static int players_count;
     static int y_right_car_pos;
     static int road_upper_bound;
     static int road_lower_bound;
     static int car_upper_bound;
     static int car_lower_bound;
-    static int indent_width;
     static std::map<sf::Keyboard::Key, std::function<void()>> key_actions;
     static std::map<sf::Keyboard::Key, bool> is_key_pressed;
     static std::vector<Collider *> indents;
@@ -39,11 +36,14 @@ static class SceneManager{
     static void create_indents();
     
     public :
+    static int car_width;
+    static int car_height;
     static int scr_width;
     static int scr_height;
     static int road_width;
     static int road_height;
     static int layers_count;
+    static int indent_width;
     static sf::RenderWindow * window;
     static sf::Music * music;
     static void create_window();
