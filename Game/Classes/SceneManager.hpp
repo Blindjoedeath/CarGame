@@ -32,7 +32,7 @@ static class SceneManager{
     static void set_actions();
     static bool is_car_pos_right(MovableObject * car, Road * road);
     static Utils::direction turn_direction(Utils::direction);
-    static void movement(MovableObject*, Road*, Utils::direction);
+    static void movement(int, Utils::direction);
     static void collide(int, Utils::direction);
     
     public :
