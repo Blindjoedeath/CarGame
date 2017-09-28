@@ -22,20 +22,47 @@
 
 
 int main (int argc, char** argv){
-    
-    SceneManager::create_window();
-    while ((*SceneManager::window).isOpen()){
+    /*
+    sf::RenderWindow rv(sf::VideoMode(100 , 100), "Game");
+    sf::Font font;
+    font.loadFromFile(resourcePath() + "font.ttf");
+    sf::Text text;
+    text.setString("Hello");
+    text.setCharacterSize(24);
+    text.setStyle(sf::Text::Bold);
+    text.setColor(sf::Color::Green);
+    text.setPosition(50, 50);
+    while (rv.isOpen()){
         sf::Event event;
-        while ((*SceneManager::window).pollEvent(event))
+        while (rv.pollEvent(event))
         {
             if (event.type == sf::Event::Closed) {
-                (*SceneManager::music).stop();
-                (*SceneManager::window).close();
+                rv.close();
             }
             
             if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape){
-                (*SceneManager::music).stop();
-                (*SceneManager::window).close();
+                rv.close();
+            }
+        }
+        rv.clear();
+        rv.draw(text);
+        rv.display();
+    }
+     */
+    
+    SceneManager::create_window();
+    while (SceneManager::window->isOpen()){
+        sf::Event event;
+        while (SceneManager::window->pollEvent(event))
+        {
+            if (event.type == sf::Event::Closed) {
+                SceneManager::music->stop();
+                SceneManager::window->close();
+            }
+            
+            if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape){
+                SceneManager::music->stop();
+                SceneManager::window->close();
             }
             if (event.type == sf::Event::KeyPressed | event.type == sf::Event::KeyReleased)
             {
@@ -43,15 +70,19 @@ int main (int argc, char** argv){
             }
         }
         SceneManager::execute_actions();
-        (*SceneManager::window).clear();
+        SceneManager::window->clear();
         for (int j = 1; j <= SceneManager::layers_count; ++j)
             for (int i = 0; i < GameObject::all_objects.size(); ++i)
                 if (GameObject::all_objects[i] -> get_layer() == j)
-                    (*SceneManager::window).draw(*GameObject::all_objects[i]->get_sprite());
+                    SceneManager::window->draw(*GameObject::all_objects[i]->get_sprite());
+        for (int i =0; i < SceneManager::texts.size(); ++i){
+            SceneManager::window->draw(*SceneManager::texts[i]);
+        }
         SceneManager::move_cars();
-        (*SceneManager::window).display();
+        SceneManager::window->display();
     }
     (*SceneManager::music).~Music();
     (*SceneManager::window).~RenderWindow();
+    
     return EXIT_SUCCESS;
 }

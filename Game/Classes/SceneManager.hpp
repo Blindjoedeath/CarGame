@@ -36,6 +36,10 @@ static class SceneManager{
     static void movement(int, Utils::direction);
     static void collide(int, Utils::direction);
     static void create_indents();
+    static void create_text();
+    static void set_winner(int);
+    static void check_car_pos();
+    static void draw_final_screen();
     
     public :
     static int car_width;
@@ -53,6 +57,7 @@ static class SceneManager{
     static void execute_actions();
     static std::vector<MovableObject*> cars;
     static std::vector<Road*> roads;
+    static std::vector<sf::Text *> texts;
     static void move_cars();
     static void check_collission();
 };

@@ -32,10 +32,54 @@ bool_map SceneManager::is_key_pressed;
 std::vector<Road*> SceneManager::roads;
 std::vector<MovableObject*> SceneManager::cars;
 std::vector<Collider*> SceneManager::indents;
+std::vector<sf::Text *> SceneManager::texts;
 sf::RenderWindow* SceneManager::window;
 sf::Music* SceneManager::music;
 GameObject * SceneManager::table;
 
+void SceneManager::set_winner(int car_num){
+    texts[car_num]->setString("1");
+    texts[car_num]->setColor(sf::Color::Green);
+    for (int i = 0; i < texts.size(); ++i)
+        if (i != car_num){
+            texts[i]->setString("2");
+            texts[i]->setColor(sf::Color::Red);
+        }
+}
+
+void SceneManager::draw_final_screen(){
+    for (int i = 0; i < texts.size(); ++i)
+        texts[i]->setString("Game Over");
+}
+
+void SceneManager::check_car_pos(){
+    int first_dist = roads[0]->get_position().y - cars[0]->get_position().y;
+    int second_dist = roads[1]->get_position().y - cars[1]->get_position().y;
+    if (first_dist > second_dist)
+        set_winner(0);
+    else set_winner(1);
+    if (std::min(abs(first_dist), abs(second_dist)) <= table_height){
+        draw_final_screen();
+    }
+}
+
+void SceneManager::create_text(){
+    sf::Font * font = new sf::Font();
+    font->loadFromFile(resourcePath() +  "font.ttf");
+    sf::Text * f_text = new sf::Text();
+    sf::Text * s_text = new sf::Text();
+    texts.push_back(f_text);
+    texts.push_back(s_text);
+    for (int i = 0; i < texts.size(); ++i){
+        texts[i]->setFont(*font);
+        texts[i]->setString("1");
+        texts[i]->setStyle(sf::Text::Bold);
+        texts[i]->setCharacterSize(table->get_size().height/2);
+        texts[i]->setColor(sf::Color::Green);
+    }
+    texts[0]->setPosition( table->get_size().width/4, table->get_size().height/3);
+    texts[1]->setPosition( (table->get_size().width/4) * 3, table->get_size().height/3);
+}
 
 void SceneManager::create_indents(){
     sf::IntRect size;
@@ -178,6 +222,7 @@ void SceneManager::move_cars(){
         cars[i]->move();
         roads[i]->move();
     }
+    check_car_pos();
 }
 
 void SceneManager::set_actions(){
@@ -197,7 +242,7 @@ void SceneManager::set_actions(){
 void SceneManager :: create_window(){
     window = new sf::RenderWindow();
     music = new sf::Music();
-    (*window).create(sf::VideoMode(scr_width , scr_height + table_height), "Game");
+    (*window).create(sf::VideoMode(scr_width , scr_height), "Game");
     if (!(*music).openFromFile(resourcePath() + "music.ogg")){
         return EXIT_FAILURE;
     }
@@ -228,5 +273,6 @@ void SceneManager :: create_window(){
     size.width = scr_width;
     size.height = table_height;
     table = new GameObject("table.png", size, sf::Vector2f (0,0), 3);
+    create_text();
 }
 
