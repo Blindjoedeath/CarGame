@@ -48,6 +48,7 @@ class MovableObject : public GameObject{
     float get_x_accel();
     float get_y_accel();
     void collide(Utils::direction);
+    void stop();
 };
 
 #endif /* MovableObject_hpp */

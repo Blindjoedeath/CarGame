@@ -36,7 +36,6 @@ void Road::gen_obstr(){
             if (*j == obstruction[i]){
                 children.erase(j);
                 delete obstruction[i];
-                std:: cout << "children count = "<< children.size() << std::endl;
                 break;
             }
         }

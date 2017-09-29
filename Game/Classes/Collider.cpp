@@ -13,7 +13,7 @@
 
 
 std::vector<Collider*> Collider::colliders;
-int Collider::collision_dist = 1;
+int Collider::collision_dist = 3;
 
 sf::Vector2f Collider::get_position(){
     return pos;
@@ -32,28 +32,28 @@ void Collider::set_position(sf::Vector2f position){
 bool Collider::check_collision(Collider * col, Utils::direction & d){
     if (col != this)
     {
-        if ((get_position().y - (col->get_position().y + col->get_size().height) <= collision_dist) &&
+        if ((fabsf(get_position().y - (col->get_position().y + col->get_size().height)) <= collision_dist) &&
             get_position().y - (col->get_position().y + col->get_size().height) > 0 &&
             get_position().x >= (col ->get_position().x - get_size().width) &&
             get_position().x <= col->get_position().x + col->get_size().width){
             d = Utils::direction::FRONT;
             return true;
         }
-        if (col->get_position().y - (get_position().y + get_size().height) <= collision_dist &&
+        if ((fabsf(col->get_position().y - (get_position().y + get_size().height))) <= collision_dist &&
             col->get_position().y - (get_position().y + get_size().height) > 0 &&
             col->get_position().x >= get_position().x - col->get_size().width &&
             col->get_position().x <= get_position().x + get_size().width){
             d = Utils::direction::BACK;
             return true;
         }
-        if (col->get_position().x - (get_position().x + get_size().width) <= collision_dist &&
+        if ( fabsf(col->get_position().x - (get_position().x + get_size().width)) <= collision_dist &&
             col->get_position().x - (get_position().x + get_size().width) > 0 &&
             get_position().y >= col->get_position().y - get_size().height &&
             get_position().y <= col->get_position().y + col->get_size().height){
             d = Utils::direction::RIGHT;
             return true;
         }
-        if (get_position().x - (col->get_position().x + col->get_size().width) <= collision_dist &&
+        if ( fabsf(get_position().x - (col->get_position().x + col->get_size().width)) <= collision_dist &&
             get_position().x - (col->get_position().x + col->get_size().width) > 0 &&
             col->get_position().y >= get_position().y - col->get_size().height &&
             col->get_position().y <= get_position().y + get_size().height){

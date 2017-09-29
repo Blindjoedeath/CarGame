@@ -11,16 +11,16 @@
 #include <iostream>
 
 
-float MovableObject::x_limit_accel = 0.003;
-float MovableObject::y_limit_accel = 0.005;
+float MovableObject::x_limit_accel = 0.005;
+float MovableObject::y_limit_accel = 0.007;
 float MovableObject::x_accel_step = 0.0003;
 float MovableObject::y_accel_step = 0.0005;
 float MovableObject::x_limit_speed = 0.3;
-float MovableObject::y_limit_speed = 0.8;
+float MovableObject::y_limit_speed = 1.5;
 float MovableObject::x_friction = 0.00025;
 float MovableObject::y_friction = 0.00045;
 float MovableObject::y_min_for_x = 0.3;
-float MovableObject::collision_koeff = 0.6;
+float MovableObject::collision_koeff = 0.65;
 
 void MovableObject::set_x_block(bool b){
     x_move_blocked = b;
@@ -151,4 +151,8 @@ void MovableObject::collide(Utils::direction dir){
         x_curr_accel = -x_curr_accel * collision_koeff;
         x_curr_speed = -x_curr_speed * collision_koeff;
     }
+}
+
+void MovableObject::stop(){
+    x_curr_accel = y_curr_accel = x_curr_speed = y_curr_speed = 0;
 }

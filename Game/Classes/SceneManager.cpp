@@ -45,8 +45,10 @@ void SceneManager::restart(){
         sf::Vector2f pos((scr_width/players_count) * i, -(roads[i]->get_size().height) + scr_height);
         roads[i]->set_position(pos);
         roads[i]->gen_obstr();
+        roads[i]->stop();
         sf::Vector2f car_pos((roads[i]->get_position()).x + roads[i]->get_size().width / 2, scr_height - car_height);
         cars[i]->set_position(car_pos);
+        cars[i]->stop();
     }
     is_game = true;
 }
@@ -287,7 +289,7 @@ void SceneManager :: create_window(){
     for (int i = 0; i < players_count; ++i){
         sf::IntRect size;
         size.width = scr_width/players_count;
-        size.height = scr_height * 10;
+        size.height = scr_height * 30;
         sf::Vector2f pos((scr_width/players_count) * i, -(size.height) + scr_height);
         roads.push_back(new Road("road.jpg", size, pos, 1));
         sf::Vector2f car_pos((roads[i]->get_position()).x + roads[i]->get_size().width / 2, scr_height - car_height);

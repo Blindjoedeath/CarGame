@@ -32,6 +32,10 @@ GameObject::~GameObject(){
     (*texture).~Texture();
     if (curr_coll != 0)
         delete curr_coll;
+    for (auto it = all_objects.begin(); it < all_objects.end(); ++it){
+        if (*it == this)
+            all_objects.erase(it);
+    }
 }
 
 int GameObject::get_layer(){
