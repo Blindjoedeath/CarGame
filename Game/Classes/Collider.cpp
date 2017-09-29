@@ -101,3 +101,12 @@ Collider::Collider(sf::Vector2f position, sf::IntRect size, mode mode){
     curr_mode = mode;
     colliders.push_back(this);
 }
+
+Collider::~Collider(){
+    for (auto it = colliders.begin(); it < colliders.end(); ++it){
+        if (*it == this){
+            colliders.erase(it);
+            break;
+        }
+    }
+}

@@ -15,7 +15,7 @@
 sf::Vector2i Road::max_obstr_size(100, 100);
 sf::Vector2i Road::min_obstr_size(50, 50);
 float Road::lim_obstr_filled_part = 0.04;
-int Road::min_obstr_dist = 100;
+int Road::min_obstr_dist = 200;
 
 GameObject* Road::add_obstruction(GameObject * obj){
     obstruction.push_back(obj);
@@ -31,12 +31,21 @@ int Road::get_dist_from_surf(sf::Vector2f  first_pos, sf::Vector2f  second_pos,
 }
 
 void Road::gen_obstr(){
+    for (int i = 0; i < obstruction.size(); ++i){
+        for (auto j = children.begin(); j < children.end(); ++j){
+            if (*j == obstruction[i]){
+                children.erase(j);
+                delete obstruction[i];
+                std:: cout << "children count = "<< children.size() << std::endl;
+                break;
+            }
+        }
+    }
+    obstruction.clear();
     int wall_indent = SceneManager::indent_width + SceneManager::car_width + 10;
     float area = ((float)get_size().width - 2*SceneManager::indent_width) * (float)get_size().height * lim_obstr_filled_part;
-    srand(time(0) + get_position().x);
     while (area > 0)
     {
-        bool hey = false;
         sf::IntRect size;
         size.width = min_obstr_size.x + rand() % (max_obstr_size.x - min_obstr_size.x);
         size.height = size.width;
@@ -65,12 +74,13 @@ void Road::gen_obstr(){
             area -= size.width * size.height;
         }
     }
+    for (auto it = obstruction.begin(); it != obstruction.end(); ++it){
+        add_child(*it);
+    }
 }
 
 Road::Road(const char * fileName, sf::IntRect size, sf::Vector2f pos, int layout)
 : MovableObject(fileName, size, pos, layout){
     gen_obstr();
-    for (auto it = obstruction.begin(); it != obstruction.end(); ++it){
-        add_child(*it);
-    }
+    srand(time(NULL));
 }

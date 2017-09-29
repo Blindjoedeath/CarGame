@@ -28,6 +28,7 @@ private:
     bool check_dynamic(Utils::direction &);
 public:
     Collider(sf::Vector2f , sf::IntRect , mode);
+    ~Collider();
     bool is_collided(Utils::direction &);
     sf::Vector2f get_position();
     sf::IntRect get_size();

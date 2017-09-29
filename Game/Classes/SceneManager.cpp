@@ -33,9 +33,23 @@ std::vector<Road*> SceneManager::roads;
 std::vector<MovableObject*> SceneManager::cars;
 std::vector<Collider*> SceneManager::indents;
 std::vector<sf::Text *> SceneManager::texts;
+sf::Text * SceneManager:: restartText;
 sf::RenderWindow* SceneManager::window;
 sf::Music* SceneManager::music;
 GameObject * SceneManager::table;
+bool SceneManager::is_game = true;
+
+
+void SceneManager::restart(){
+    for (int i = 0; i < players_count; ++i){
+        sf::Vector2f pos((scr_width/players_count) * i, -(roads[i]->get_size().height) + scr_height);
+        roads[i]->set_position(pos);
+        roads[i]->gen_obstr();
+        sf::Vector2f car_pos((roads[i]->get_position()).x + roads[i]->get_size().width / 2, scr_height - car_height);
+        cars[i]->set_position(car_pos);
+    }
+    is_game = true;
+}
 
 void SceneManager::set_winner(int car_num){
     texts[car_num]->setString("1");
@@ -47,9 +61,21 @@ void SceneManager::set_winner(int car_num){
         }
 }
 
-void SceneManager::draw_final_screen(){
-    for (int i = 0; i < texts.size(); ++i)
-        texts[i]->setString("Game Over");
+void SceneManager::draw(){
+    if (is_game){
+        for (int j = 1; j <= layers_count; ++j)
+            for (int i = 0; i < GameObject::all_objects.size(); ++i)
+                if (GameObject::all_objects[i] -> get_layer() == j)
+                    window->draw(*GameObject::all_objects[i]->get_sprite());
+        for (int i =0; i < texts.size(); ++i)
+            window->draw(*texts[i]);
+        move_cars();
+    }
+    else {
+        for (int i = 0; i < texts.size(); ++i)
+            window->draw(*texts[i]);
+        window->draw(*restartText);
+    }
 }
 
 void SceneManager::check_car_pos(){
@@ -59,7 +85,7 @@ void SceneManager::check_car_pos(){
         set_winner(0);
     else set_winner(1);
     if (std::min(abs(first_dist), abs(second_dist)) <= table_height){
-        draw_final_screen();
+        is_game = false;
     }
 }
 
@@ -79,6 +105,15 @@ void SceneManager::create_text(){
     }
     texts[0]->setPosition( table->get_size().width/4, table->get_size().height/3);
     texts[1]->setPosition( (table->get_size().width/4) * 3, table->get_size().height/3);
+    std::string restText = "Press R to restart game";
+    restartText = new sf::Text();
+    restartText->setFont(*font);
+    restartText->setString(restText);
+    restartText->setStyle(sf::Text::Bold);
+    restartText->setCharacterSize(30);
+    restartText->setColor(sf::Color::Blue);
+    std::cout << (scr_width - restText.length() * restartText->getCharacterSize()) << std::endl;
+    restartText->setPosition(330, scr_height/2);
 }
 
 void SceneManager::create_indents(){
@@ -234,6 +269,7 @@ void SceneManager::set_actions(){
     key_actions[sf::Keyboard::Down] = [](){movement(1, Utils::direction::BACK);};
     key_actions[sf::Keyboard::Left] = [](){movement(1, Utils::direction::LEFT);};
     key_actions[sf::Keyboard::Right] = [](){movement(1, Utils::direction::RIGHT);};
+    key_actions[sf::Keyboard::R] = [](){if (!is_game) restart();};
     for (action_map::iterator it = key_actions.begin(); it!=key_actions.end(); ++it){
         is_key_pressed[it->first] = false;
     }

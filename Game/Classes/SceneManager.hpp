@@ -40,6 +40,8 @@ static class SceneManager{
     static void set_winner(int);
     static void check_car_pos();
     static void draw_final_screen();
+    static void restart();
+    static bool is_game;
     
     public :
     static int car_width;
@@ -58,8 +60,10 @@ static class SceneManager{
     static std::vector<MovableObject*> cars;
     static std::vector<Road*> roads;
     static std::vector<sf::Text *> texts;
+    static sf::Text * restartText;
     static void move_cars();
     static void check_collission();
+    static void draw();
 };
 
 #endif /* SceneManager_hpp */

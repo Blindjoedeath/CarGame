@@ -30,6 +30,8 @@ GameObject::GameObject (const char * fileName, sf::IntRect transform, sf::Vector
 GameObject::~GameObject(){
     (*sprite).~Sprite();
     (*texture).~Texture();
+    if (curr_coll != 0)
+        delete curr_coll;
 }
 
 int GameObject::get_layer(){
@@ -55,7 +57,7 @@ void GameObject::set_position(sf::Vector2f pos){
     if (curr_coll != NULL){
         curr_coll -> set_position(curr_coll->get_position() + differ);
     }
-    for (int i = 0; i < child_count; ++i){
+    for (int i = 0; i < children.size(); ++i){
         children[i]->set_position(children[i]->get_position() + differ);
     }
 }
