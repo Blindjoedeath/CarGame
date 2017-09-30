@@ -16,11 +16,12 @@
 		3D3426BB1F716F27007E9907 /* GameObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D3426B91F716F27007E9907 /* GameObject.cpp */; };
 		3D6040FA1F79082400DAB40B /* Utils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D6040F81F79082400DAB40B /* Utils.cpp */; };
 		3DA00CC01F72915100F9B62E /* Road.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DA00CBE1F72915100F9B62E /* Road.cpp */; };
-		3DA00CC41F72B69A00F9B62E /* Car.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DA00CC31F72B69A00F9B62E /* Car.png */; };
 		3DAAF31D1F785C7B00AF0AEE /* Collider.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DAAF31B1F785C7B00AF0AEE /* Collider.cpp */; };
+		3DAD2E691F7F8CD20075CEDC /* road.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DAD2E681F7F8CD20075CEDC /* road.png */; };
+		3DAD2E6C1F7F8EC00075CEDC /* car1.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DAD2E6A1F7F8EC00075CEDC /* car1.png */; };
+		3DAD2E6D1F7F8EC00075CEDC /* car2.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DAD2E6B1F7F8EC00075CEDC /* car2.png */; };
+		3DAD2E6F1F7F98CB0075CEDC /* obstruction.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DAD2E6E1F7F98CB0075CEDC /* obstruction.png */; };
 		3DDBF3AD1F72F9BD00526289 /* MovableObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DDBF3AB1F72F9BD00526289 /* MovableObject.cpp */; };
-		3DECAD5A1F72C6480041CBF6 /* road.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3DECAD591F72C6480041CBF6 /* road.jpg */; };
-		3DECAD5C1F72C6C40041CBF6 /* obstruction.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3DECAD5B1F72C6C40041CBF6 /* obstruction.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,13 +41,14 @@
 		3D6040F91F79082400DAB40B /* Utils.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Utils.hpp; sourceTree = "<group>"; };
 		3DA00CBE1F72915100F9B62E /* Road.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Road.cpp; path = Classes/Road.cpp; sourceTree = "<group>"; };
 		3DA00CBF1F72915100F9B62E /* Road.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = Road.hpp; path = Classes/Road.hpp; sourceTree = "<group>"; };
-		3DA00CC31F72B69A00F9B62E /* Car.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Car.png; sourceTree = "<group>"; };
 		3DAAF31B1F785C7B00AF0AEE /* Collider.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Collider.cpp; path = Classes/Collider.cpp; sourceTree = "<group>"; };
 		3DAAF31C1F785C7B00AF0AEE /* Collider.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = Collider.hpp; path = Classes/Collider.hpp; sourceTree = "<group>"; };
+		3DAD2E681F7F8CD20075CEDC /* road.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = road.png; sourceTree = "<group>"; };
+		3DAD2E6A1F7F8EC00075CEDC /* car1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = car1.png; sourceTree = "<group>"; };
+		3DAD2E6B1F7F8EC00075CEDC /* car2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = car2.png; sourceTree = "<group>"; };
+		3DAD2E6E1F7F98CB0075CEDC /* obstruction.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = obstruction.png; sourceTree = "<group>"; };
 		3DDBF3AB1F72F9BD00526289 /* MovableObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MovableObject.cpp; path = Classes/MovableObject.cpp; sourceTree = "<group>"; };
 		3DDBF3AC1F72F9BD00526289 /* MovableObject.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = MovableObject.hpp; path = Classes/MovableObject.hpp; sourceTree = "<group>"; };
-		3DECAD591F72C6480041CBF6 /* road.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = road.jpg; sourceTree = "<group>"; };
-		3DECAD5B1F72C6C40041CBF6 /* obstruction.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = obstruction.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,11 +113,12 @@
 		3D34269B1F71571E007E9907 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				3DAD2E6E1F7F98CB0075CEDC /* obstruction.png */,
+				3DAD2E6A1F7F8EC00075CEDC /* car1.png */,
+				3DAD2E6B1F7F8EC00075CEDC /* car2.png */,
+				3DAD2E681F7F8CD20075CEDC /* road.png */,
 				3D02D56B1F7C022E001A2C46 /* font.ttf */,
 				3D02D5691F7BFC6F001A2C46 /* Table.png */,
-				3DECAD5B1F72C6C40041CBF6 /* obstruction.jpg */,
-				3DECAD591F72C6480041CBF6 /* road.jpg */,
-				3DA00CC31F72B69A00F9B62E /* Car.png */,
 				3D3426B41F7168BD007E9907 /* music.ogg */,
 			);
 			name = Resources;
@@ -181,11 +184,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				3D02D56A1F7BFC6F001A2C46 /* Table.png in Resources */,
-				3DA00CC41F72B69A00F9B62E /* Car.png in Resources */,
-				3DECAD5A1F72C6480041CBF6 /* road.jpg in Resources */,
-				3DECAD5C1F72C6C40041CBF6 /* obstruction.jpg in Resources */,
+				3DAD2E6F1F7F98CB0075CEDC /* obstruction.png in Resources */,
+				3DAD2E6D1F7F8EC00075CEDC /* car2.png in Resources */,
+				3DAD2E6C1F7F8EC00075CEDC /* car1.png in Resources */,
 				3D3426B51F7168BD007E9907 /* music.ogg in Resources */,
 				3D02D56C1F7C022E001A2C46 /* font.ttf in Resources */,
+				3DAD2E691F7F8CD20075CEDC /* road.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

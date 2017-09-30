@@ -11,11 +11,11 @@
 #include <iostream>
 
 
-float MovableObject::x_limit_accel = 0.005;
-float MovableObject::y_limit_accel = 0.007;
-float MovableObject::x_accel_step = 0.0003;
+float MovableObject::x_limit_accel = 0.008;
+float MovableObject::y_limit_accel = 0.008;
+float MovableObject::x_accel_step = 0.0004;
 float MovableObject::y_accel_step = 0.0005;
-float MovableObject::x_limit_speed = 0.3;
+float MovableObject::x_limit_speed = 0.6;
 float MovableObject::y_limit_speed = 1.5;
 float MovableObject::x_friction = 0.00025;
 float MovableObject::y_friction = 0.00045;

@@ -12,9 +12,9 @@
 #include <SceneManager.hpp>
 #include <time.h>
 
-sf::Vector2i Road::max_obstr_size(100, 100);
+sf::Vector2i Road::max_obstr_size(60, 60);
 sf::Vector2i Road::min_obstr_size(50, 50);
-float Road::lim_obstr_filled_part = 0.04;
+float Road::lim_obstr_filled_part = 0.01;
 int Road::min_obstr_dist = 200;
 
 GameObject* Road::add_obstruction(GameObject * obj){
@@ -68,7 +68,7 @@ void Road::gen_obstr(){
         }
         if (isCorrect)
         {
-            Collider * coll = add_obstruction(new GameObject("obstruction.jpg", size, pos, 2))
+            Collider * coll = add_obstruction(new GameObject("obstruction.png", size, pos, 2))
                 ->add_collider(new Collider(pos, size, Collider::mode::STATIC));
             area -= size.width * size.height;
         }

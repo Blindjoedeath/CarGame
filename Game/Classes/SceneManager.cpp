@@ -10,7 +10,7 @@
 #include <iostream>
 #include <Collider.hpp>
 #include <Utils.hpp>
-
+#include <string>
 typedef std::map<sf::Keyboard::Key, std::function<void()>> action_map;
 typedef std::map<sf::Keyboard::Key, bool>  bool_map;
 
@@ -22,7 +22,7 @@ int SceneManager::layers_count = 3;
 int SceneManager::players_count = 2;
 int SceneManager::y_right_car_pos = 400;
 int SceneManager::indent_width = 50;
-int SceneManager::table_height = 100;
+int SceneManager::table_height = 60;
 int SceneManager::road_lower_bound;
 int SceneManager::road_upper_bound;
 int SceneManager::car_lower_bound;
@@ -38,6 +38,9 @@ sf::RenderWindow* SceneManager::window;
 sf::Music* SceneManager::music;
 GameObject * SceneManager::table;
 bool SceneManager::is_game = true;
+
+const char * car = "car";
+const char * form = ".png";
 
 
 void SceneManager::restart(){
@@ -284,19 +287,24 @@ void SceneManager :: create_window(){
     if (!(*music).openFromFile(resourcePath() + "music.ogg")){
         return EXIT_FAILURE;
     }
-//    (*music).play();
+    (*music).play();
     sf::IntRect rect;
     for (int i = 0; i < players_count; ++i){
         sf::IntRect size;
         size.width = scr_width/players_count;
         size.height = scr_height * 30;
         sf::Vector2f pos((scr_width/players_count) * i, -(size.height) + scr_height);
-        roads.push_back(new Road("road.jpg", size, pos, 1));
+        roads.push_back(new Road("road.png", size, pos, 1));
         sf::Vector2f car_pos((roads[i]->get_position()).x + roads[i]->get_size().width / 2, scr_height - car_height);
         sf::IntRect car_size;
         car_size.width = car_width;
         car_size.height = car_height;
-        cars.push_back(new MovableObject("car.png", car_size, car_pos, 2));
+        char * carName = new char[sizeof(car) + sizeof(form) + 1];
+        char num = (char) (i+1 + '0');
+        strcat(carName, car);
+        strcat(carName, &num);
+        strcat(carName, form);
+        cars.push_back(new MovableObject(carName, car_size, car_pos, 2));
         cars[i]->add_collider(new Collider(cars[i]->get_position(), cars[i]->get_size(), Collider::mode::DYNAMIC));
         roads[i]->set_position
             (sf::Vector2f(roads[i]->get_position().x, roads[i]->get_position().y + cars[i]->get_size().height));
