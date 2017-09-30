@@ -1,16 +1,10 @@
-//
 //  MovableObject.cpp
 //  Game
-//
 //  Created by Blind Joe Death on 19.09.17.
 //  Copyright © 2017 test. All rights reserved.
-//
-
 #include "MovableObject.hpp"
 #include <cmath>
 #include <iostream>
-
-
 float MovableObject::x_limit_accel = 0.008;
 float MovableObject::y_limit_accel = 0.008;
 float MovableObject::x_accel_step = 0.0004;
@@ -110,8 +104,8 @@ void MovableObject::move(){
             y_curr_speed = -y_limit_speed;
     }
 
-    if (((y_curr_speed > 0 && y_curr_speed < y_min_for_x)||
-        (y_curr_speed < 0 && y_curr_speed > -y_min_for_x)|| y_curr_speed == 0) && x_move_blocked){
+    if (((y_curr_speed > 0 & y_curr_speed < y_min_for_x)||
+        (y_curr_speed < 0 & y_curr_speed > -y_min_for_x)|| y_curr_speed == 0) & x_move_blocked){
         x_curr_speed = x_curr_accel = 0;
     }
     set_position(sf::Vector2f(get_position().x + x_curr_speed,get_position().y - y_curr_speed));
@@ -124,7 +118,6 @@ void MovableObject::add_acceleration(Utils::direction dir)
             if (y_curr_accel + y_accel_step <= y_limit_accel)
                 y_curr_accel += y_accel_step;
             break;
-            
         case Utils::direction::BACK:
             if (y_curr_accel - y_accel_step >= -y_limit_accel)
                 y_curr_accel -= y_accel_step;

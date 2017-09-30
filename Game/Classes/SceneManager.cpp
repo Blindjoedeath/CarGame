@@ -38,11 +38,8 @@ sf::RenderWindow* SceneManager::window;
 sf::Music* SceneManager::music;
 GameObject * SceneManager::table;
 bool SceneManager::is_game = true;
-
 const char * car = "car";
 const char * form = ".png";
-
-
 void SceneManager::restart(){
     for (int i = 0; i < players_count; ++i){
         sf::Vector2f pos((scr_width/players_count) * i, -(roads[i]->get_size().height) + scr_height);
@@ -55,7 +52,6 @@ void SceneManager::restart(){
     }
     is_game = true;
 }
-
 void SceneManager::set_winner(int car_num){
     texts[car_num]->setString("1");
     texts[car_num]->setColor(sf::Color::Green);
@@ -65,7 +61,6 @@ void SceneManager::set_winner(int car_num){
             texts[i]->setColor(sf::Color::Red);
         }
 }
-
 void SceneManager::draw(){
     if (is_game){
         for (int j = 1; j <= layers_count; ++j)
@@ -82,7 +77,6 @@ void SceneManager::draw(){
         window->draw(*restartText);
     }
 }
-
 void SceneManager::check_car_pos(){
     int first_dist = roads[0]->get_position().y - cars[0]->get_position().y;
     int second_dist = roads[1]->get_position().y - cars[1]->get_position().y;
@@ -93,7 +87,6 @@ void SceneManager::check_car_pos(){
         is_game = false;
     }
 }
-
 void SceneManager::create_text(){
     sf::Font * font = new sf::Font();
     font->loadFromFile(resourcePath() +  "font.ttf");
@@ -120,7 +113,6 @@ void SceneManager::create_text(){
     std::cout << (scr_width - restText.length() * restartText->getCharacterSize()) << std::endl;
     restartText->setPosition(330, scr_height/2);
 }
-
 void SceneManager::create_indents(){
     sf::IntRect size;
     size.width = indent_width;
@@ -148,7 +140,6 @@ Utils::direction SceneManager::turn_direction(Utils::direction dir){
     }
     return;
 }
-
 bool SceneManager::is_car_pos_right(MovableObject *car, Road *road){
     if (car->get_position().y - y_right_car_pos < 10)
         return true;
@@ -180,55 +171,44 @@ void SceneManager::movement(int car_num, Utils::direction dir){
         car->add_acceleration(dir);
     }
 }
-
 void SceneManager::collide(int car_num, Utils::direction dir){
     bool collide = true;
     switch(dir){
         case Utils::direction::FRONT:{
             if (is_car_pos_right(cars[car_num], roads[car_num])){
-                if(roads[car_num]->get_y_speed() >= 0){
+                if(roads[car_num]->get_y_speed() >= 0)
                     collide = false;
-                }
             }
-            else {
-                if (cars[car_num]->get_y_speed() <= 0){
+            else
+                if (cars[car_num]->get_y_speed() <= 0)
                     collide = false;
-                }
-            }
         }
             break;
         case Utils::direction::BACK:{
             if (is_car_pos_right(cars[car_num], roads[car_num])){
-                if (roads[car_num]->get_y_speed() <= 0){
+                if (roads[car_num]->get_y_speed() <= 0)
                     collide = false;
-                }
             }
-            else {
-                if (cars[car_num]->get_y_speed() >= 0){
+            else
+                if (cars[car_num]->get_y_speed() >= 0)
                     collide = false;
-                }
-            }
         }
             break;
-        case Utils::direction::RIGHT:{
+        case Utils::direction::RIGHT:
             if(cars[car_num]->get_x_speed() <= 0)
                 collide = false;
-        }
             break;
-        case Utils::direction::LEFT:{
+        case Utils::direction::LEFT:
             if (cars[car_num]->get_x_speed() >= 0)
                 collide = false;
-        }
             break;
     }
-    if (collide){
+    if (collide)
         if (is_car_pos_right(cars[car_num], roads[car_num]) &&
                 dir != Utils::direction::LEFT && dir != Utils::direction::RIGHT)
             roads[car_num]->collide(turn_direction(dir));
-        else{
+        else
             cars[car_num]->collide(dir);
-        }
-    }
 }
 
 void SceneManager::check_collission(){
@@ -321,4 +301,3 @@ void SceneManager :: create_window(){
     table = new GameObject("table.png", size, sf::Vector2f (0,0), 3);
     create_text();
 }
-

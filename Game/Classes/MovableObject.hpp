@@ -1,18 +1,12 @@
-//
 //  MovableObject.hpp
 //  Game
-//
 //  Created by Blind Joe Death on 19.09.17.
 //  Copyright © 2017 test. All rights reserved.
-//
-
 #ifndef MovableObject_hpp
 #define MovableObject_hpp
-
 #include <stdio.h>
 #include "GameObject.hpp"
 #include <Utils.hpp>
-
 class MovableObject : public GameObject{
     private :
     static float x_limit_accel;
@@ -50,5 +44,4 @@ class MovableObject : public GameObject{
     void collide(Utils::direction);
     void stop();
 };
-
 #endif /* MovableObject_hpp */

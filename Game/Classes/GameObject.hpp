@@ -1,11 +1,8 @@
-//
 //  GameObject.hpp
 //  Game
 //
 //  Created by Blind Joe Death on 19.09.17.
 //  Copyright © 2017 test. All rights reserved.
-//
-
 #ifndef GameObject_hpp
 #define GameObject_hpp
 

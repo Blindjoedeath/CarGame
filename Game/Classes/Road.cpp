@@ -22,7 +22,6 @@ GameObject* Road::add_obstruction(GameObject * obj){
     return obj;
 }
 
-
 int Road::get_dist_from_surf(sf::Vector2f  first_pos, sf::Vector2f  second_pos,
                                sf::IntRect  first_trans, sf::IntRect  second_trans){
     return (sqrt(pow((first_pos.x + first_trans.width/2) - (second_pos.x + second_trans.width/2), 2) +
@@ -73,9 +72,7 @@ void Road::gen_obstr(){
             area -= size.width * size.height;
         }
     }
-    for (auto it = obstruction.begin(); it != obstruction.end(); ++it){
-        add_child(*it);
-    }
+    for (auto it = obstruction.begin(); it != obstruction.end(); ++it)        add_child(*it);
 }
 
 Road::Road(const char * fileName, sf::IntRect size, sf::Vector2f pos, int layout)

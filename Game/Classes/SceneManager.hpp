@@ -65,5 +65,4 @@ static class SceneManager{
     static void check_collission();
     static void draw();
 };
-
 #endif /* SceneManager_hpp */

@@ -11,7 +11,6 @@
 #include <iostream>
 #include <SceneManager.hpp>
 
-
 std::vector<Collider*> Collider::colliders;
 int Collider::collision_dist = 3;
 
@@ -27,7 +26,6 @@ void Collider::set_position(sf::Vector2f position){
     pos.x = position.x;
     pos.y = position.y;
 }
-
 
 bool Collider::check_collision(Collider * col, Utils::direction & d){
     if (col != this)
@@ -64,7 +62,6 @@ bool Collider::check_collision(Collider * col, Utils::direction & d){
     return false;
 }
 
-
 bool Collider:: check_static(Utils::direction & dir){
     for(auto it = colliders.begin(); it < colliders.end(); ++it){
         if ((*it) -> curr_mode == Collider::mode::STATIC &&
@@ -89,11 +86,10 @@ bool Collider:: check_dynamic(Utils::direction & dir){
 }
 
 bool Collider:: is_collided(Utils::direction & direction){
-    if (curr_mode == Collider::mode::STATIC)
-        return check_dynamic(direction);
-    else return (check_dynamic(direction) || check_static(direction));
+    return (curr_mode == Collider::mode::STATIC?
+            check_dynamic(direction) :
+            check_dynamic(direction) || check_static(direction));
 }
-
 
 Collider::Collider(sf::Vector2f position, sf::IntRect size, mode mode){
     pos = position;
